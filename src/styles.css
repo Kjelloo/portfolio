@@ -1,1 +1,37 @@
-/* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
+
+@import "tailwindcss/tailwind.css";
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+body {
+  font-family: "Space Grotesk", sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #362f2d;
+}
+
+
+/*Text underline on hover*/
+.custom-underline {
+  position: relative;
+}
+
+.custom-underline::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 0.1em;
+  background-color: currentColor;
+  transform: translateY(0.1rem);
+  opacity: 0;
+  transition: opacity 0.2s ease-in-out, transform 1s ease-in-out;
+}
+
+.custom-underline:hover::after {
+  transform: translateY(0.1rem);
+  opacity: 1;
+}
