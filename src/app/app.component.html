@@ -12,11 +12,11 @@
         <img src="assets/icons/resume.png" alt="Resume">
         <span class="not-selectable">Resume</span>
       </div>
-      <div class="desktop-icon" (click)="openApp('mail')">
+      <div class="desktop-icon" (click)="openMailClient()">
         <img src="assets/icons/mail.png" alt="Mail">
         <span class="not-selectable">Mail</span>
       </div>
-      <div class="desktop-icon" (click)="openApp('github')">
+      <div class="desktop-icon" (click)="goToLink('https://github.com/kjelloo')">
         <img src="assets/icons/github.png" alt="GitHub">
         <span class="not-selectable">GitHub</span>
       </div>
@@ -55,7 +55,7 @@
                 <!-- Social links buttons -->
                 <button class="win98-button">Portfolio</button>
                 <button class="win98-button">LinkedIn</button>
-                <button class="win98-button">GitHub</button>
+                <button class="win98-button" (click)="open('https://github.com/kjelloo')">GitHub</button>
                 <button class="win98-button">Email</button>
               </div>
             </div>

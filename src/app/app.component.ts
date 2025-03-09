@@ -25,17 +25,11 @@ export class AppComponent implements OnInit, OnDestroy {
   windowPositions: {[key: string]: {x: number, y: number}} = {
     about: { x: 120, y: 50 },
     resume: { x: 400, y: 30 },
-    photos: { x: 150, y: 100 },
-    mail: { x: 200, y: 150 },
-    github: { x: 250, y: 200 }
   };
 
   windowSizes: {[key: string]: {width: string, height: string}} = {
     about: { width: '600px', height: '500px' },
     resume: { width: '750px', height: '600px' },
-    photos: { width: '450px', height: '350px' },
-    mail: { width: '400px', height: '300px' },
-    github: { width: '450px', height: '350px' }
   };
 
   isMaximized: {[key: string]: boolean} = {
@@ -53,7 +47,7 @@ export class AppComponent implements OnInit, OnDestroy {
     // Update time every minute
     setInterval(() => {
       this.currentTime = new Date();
-    }, 1000);
+    }, 500);
 
     // Handle window resize
     window.addEventListener('resize', this.handleResize.bind(this));
@@ -68,7 +62,6 @@ export class AppComponent implements OnInit, OnDestroy {
 
   handleResize() {
     const viewportWidth = window.innerWidth;
-    const viewportHeight = window.innerHeight;
     const isMobile = viewportWidth < 768;
 
     // For all open windows
@@ -104,8 +97,6 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   openApp(app: string) {
-    console.log(`Opening app: ${app}`);
-
     // Get viewport dimensions
     const viewportWidth = window.innerWidth;
     const viewportHeight = window.innerHeight;
@@ -118,11 +109,11 @@ export class AppComponent implements OnInit, OnDestroy {
       width = '100%';
       height = 'calc(100vh - 28px)';
     } else if (viewportWidth < 1024) { // Tablet
-      width = Math.min(700, viewportWidth * 0.8) + 'px';
-      height = Math.min(600, viewportHeight * 0.8) + 'px';
+      width = Math.min(800, viewportWidth * 0.8) + 'px';
+      height = Math.min(700, viewportHeight * 0.8) + 'px';
     } else { // Desktop
-      width = Math.min(850, viewportWidth * 0.6) + 'px';
-      height = Math.min(650, viewportHeight * 0.7) + 'px';
+      width = Math.min(950, viewportWidth * 0.6) + 'px';
+      height = Math.min(850, viewportHeight * 0.7) + 'px';
     }
 
     // Set the window size
@@ -166,17 +157,6 @@ export class AppComponent implements OnInit, OnDestroy {
     // Just toggle focus away for now
     this.activeWindow = null;
   }
-
-  // resetDragPosition(app: string) {
-  //   // This helps reset the CDK drag position after programmatic position changes
-  //   setTimeout(() => {
-  //     const element = document.querySelector(`.${app}-window`) as HTMLElement;
-  //     if (element) {
-  //       // Force a reflow to reset the drag position
-  //       element.style.transform = 'none';
-  //     }
-  //   }, 0);
-  // }
 
   setActiveWindow(app: string) {
     this.activeWindow = app;
@@ -252,7 +232,6 @@ export class AppComponent implements OnInit, OnDestroy {
 
     // Get window width and height in pixels
     const widthPx = parseInt(width, 10);
-    const heightPx = parseInt(height, 10);
 
     // Get current position
     let x = this.windowPositions[app].x;
@@ -278,4 +257,14 @@ export class AppComponent implements OnInit, OnDestroy {
     // Update position
     this.windowPositions[app] = { x, y };
   }
+
+  goToLink(url: string) {
+    window.open(url, '_blank');
+  }
+
+  openMailClient(): void {
+    window.location.href = "mailto:kjell.schoke@outlook.com";
+  }
+
+  protected readonly open = open;
 }
