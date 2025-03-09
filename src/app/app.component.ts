@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {CdkDragEnd, CdkDragStart} from "@angular/cdk/drag-drop";
+import {CdkDragEnd, CdkDragStart, CdkDragHandle } from "@angular/cdk/drag-drop";
 
 @Component({
   selector: 'app-root',
@@ -52,7 +52,7 @@ export class AppComponent implements OnInit {
     // Update time every minute
     setInterval(() => {
       this.currentTime = new Date();
-    }, 60000);
+    }, 1000);
 
     // Open default windows on start
     setTimeout(() => {
@@ -102,8 +102,8 @@ export class AppComponent implements OnInit {
       this.previousPositions[app] = { ...this.windowPositions[app] };
 
       // Maximize
-      this.windowSizes[app] = { width: '100%', height: 'calc(100% - 28px)' };
-      this.windowPositions[app] = { x: 0, y: 0 };
+      this.windowSizes[app] = { width: 'calc(100% - 28px)', height: 'calc(100% - 28px)' };
+      this.windowPositions[app] = { x: 10, y: 10 };
       this.isMaximized[app] = true;
     }
 

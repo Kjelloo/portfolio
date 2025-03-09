@@ -28,17 +28,17 @@
            cdkDrag
            class="win98-window about-window"
            [ngStyle]="{'z-index': activeWindow === 'about' ? 10 : 5,
-                       'width': windowSizes['about'].width,
-                       'height': windowSizes['about'].height,
-                       'left': windowPositions['about'].x + 'px',
-                       'top': windowPositions['about'].y + 'px'}"
+                   'width': windowSizes['about'].width,
+                   'height': windowSizes['about'].height,
+                   'left': windowPositions['about'].x + 'px',
+                   'top': windowPositions['about'].y + 'px'}"
            (mousedown)="setActiveWindow('about')">
-        <div class="win98-title-bar">
+        <div class="win98-title-bar" cdkDragHandle>
           <div class="title-bar-text">Welcome</div>
           <div class="title-bar-controls">
-            <button aria-label="Minimize" (click)="minimizeApp('about')"></button>
-            <button aria-label="Maximize" (click)="maximizeApp('about')"></button>
-            <button aria-label="Close" (click)="closeApp('about')"></button>
+            <button aria-label="Minimize" (click)="minimizeApp('about')">&#x2212;</button>
+            <button aria-label="Maximize" (click)="maximizeApp('about')">&#x25A1;</button>
+            <button aria-label="Close" (click)="closeApp('about')">&#x2715;</button>
           </div>
         </div>
         <div class="win98-window-content">
@@ -65,19 +65,17 @@
            cdkDrag
            class="win98-window resume-window"
            [ngStyle]="{'z-index': activeWindow === 'resume' ? 10 : 5,
-                       'width': windowSizes['resume'].width,
-                       'height': windowSizes['resume'].height,
-                       'left': windowPositions['resume'].x + 'px',
-                       'top': windowPositions['resume'].y + 'px'}"
-           (mousedown)="setActiveWindow('resume')"
-           (cdkDragStarted)="onDragStarted($event, 'resume')"
-           (cdkDragEnded)="onDragEnded($event, 'resume')">
-        <div class="win98-title-bar">
-          <div class="title-bar-text">Resume</div>
+                   'width': windowSizes['resume'].width,
+                   'height': windowSizes['resume'].height,
+                   'left': windowPositions['resume'].x + 'px',
+                   'top': windowPositions['resume'].y + 'px'}"
+           (mousedown)="setActiveWindow('resume')">
+        <div class="win98-title-bar" cdkDragHandle>
+          <div class="title-bar-text">Welcome</div>
           <div class="title-bar-controls">
-            <button aria-label="Minimize" (click)="minimizeApp('resume')"></button>
-            <button aria-label="Maximize" (click)="maximizeApp('resume')"></button>
-            <button aria-label="Close" (click)="closeApp('resume')"></button>
+            <button aria-label="Minimize" (click)="minimizeApp('resume')">&#x2212;</button>
+            <button aria-label="Maximize" (click)="maximizeApp('resume')">&#x25A1;</button>
+            <button aria-label="Close" (click)="closeApp('resume')">&#x2715;</button>
           </div>
         </div>
         <div class="win98-window-content">

@@ -150,6 +150,7 @@ body {
 /* Window Content */
 .win98-window-content {
   padding: 4px;
+  cursor: default;
   height: calc(100% - 26px);
   overflow: auto;
 }
