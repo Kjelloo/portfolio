@@ -1,1 +1,169 @@
-<router-outlet></router-outlet>
+<div class="win98-desktop">
+  <!-- Desktop Background -->
+  <div class="desktop-background">
+    <!-- Desktop Icons -->
+    <div class="desktop-icons">
+      <div class="desktop-icon" (click)="openApp('about')">
+        <img src="assets/icons/about.png" alt="About Me">
+        <span>About Me</span>
+      </div>
+      <div class="desktop-icon" (click)="openApp('resume')">
+        <img src="assets/icons/resume.png" alt="Resume">
+        <span>Resume</span>
+      </div>
+      <div class="desktop-icon" (click)="openApp('mail')">
+        <img src="assets/icons/mail.png" alt="Mail">
+        <span>Mail</span>
+      </div>
+      <div class="desktop-icon" (click)="openApp('github')">
+        <img src="assets/icons/github.png" alt="GitHub">
+        <span>GitHub</span>
+      </div>
+    </div>
+
+    <!-- Windows -->
+    <div class="window-container">
+      <!-- About Me Window -->
+      <div *ngIf="openWindows['about']"
+           cdkDrag
+           class="win98-window about-window"
+           [ngStyle]="{'z-index': activeWindow === 'about' ? 10 : 5,
+                       'width': windowSizes['about'].width,
+                       'height': windowSizes['about'].height,
+                       'left': windowPositions['about'].x + 'px',
+                       'top': windowPositions['about'].y + 'px'}"
+           (mousedown)="setActiveWindow('about')">
+        <div class="win98-title-bar">
+          <div class="title-bar-text">Welcome</div>
+          <div class="title-bar-controls">
+            <button aria-label="Minimize" (click)="minimizeApp('about')"></button>
+            <button aria-label="Maximize" (click)="maximizeApp('about')"></button>
+            <button aria-label="Close" (click)="closeApp('about')"></button>
+          </div>
+        </div>
+        <div class="win98-window-content">
+          <div class="profile-content">
+            <img src="assets/profile-photo.jpg" alt="Profile Photo" class="profile-photo">
+            <div class="profile-info">
+              <h2>Your Name</h2>
+              <p>Web Developer | iOS Developer | UX/UI Designer</p>
+              <p>Location 📍</p>
+              <div class="social-links">
+                <!-- Social links buttons -->
+                <button class="win98-button">Portfolio</button>
+                <button class="win98-button">LinkedIn</button>
+                <button class="win98-button">GitHub</button>
+                <button class="win98-button">Email</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Resume Window -->
+      <div *ngIf="openWindows['resume']"
+           cdkDrag
+           class="win98-window resume-window"
+           [ngStyle]="{'z-index': activeWindow === 'resume' ? 10 : 5,
+                       'width': windowSizes['resume'].width,
+                       'height': windowSizes['resume'].height,
+                       'left': windowPositions['resume'].x + 'px',
+                       'top': windowPositions['resume'].y + 'px'}"
+           (mousedown)="setActiveWindow('resume')"
+           (cdkDragStarted)="onDragStarted($event, 'resume')"
+           (cdkDragEnded)="onDragEnded($event, 'resume')">
+        <div class="win98-title-bar">
+          <div class="title-bar-text">Resume</div>
+          <div class="title-bar-controls">
+            <button aria-label="Minimize" (click)="minimizeApp('resume')"></button>
+            <button aria-label="Maximize" (click)="maximizeApp('resume')"></button>
+            <button aria-label="Close" (click)="closeApp('resume')"></button>
+          </div>
+        </div>
+        <div class="win98-window-content">
+          <div class="toolbar">
+            <button class="win98-button">Download</button>
+            <button class="win98-button">Open in New Tab</button>
+          </div>
+          <div class="resume-view">
+            <div class="resume-header">
+              <h1>Your Name</h1>
+              <p>iOS and Web Developer</p>
+
+              <div class="contact-info">
+                <div class="contact-column">
+                  <h4>Phone</h4>
+                  <a href="tel:+1234567890">123-456-7890</a>
+                </div>
+                <div class="contact-column">
+                  <h4>Email</h4>
+                  <a href="mailto:kjell.schoke@outlook.com">kjell.schoke@outlook.com</a>
+                </div>
+                <div class="contact-column">
+                  <h4>Links</h4>
+                  <a href="https://github.com/kjelloo">GitHub Profile</a>
+                </div>
+              </div>
+            </div>
+
+            <div class="resume-section">
+              <h2>01. PROFILE</h2>
+              <p>Versatile and passionate programmer who has had experience with modern development tools such as Swift, Python, HTML/CSS/JS and SQL. Experienced in front-end development for web apps and iOS apps using Vue.js and Swift respectively. Has also worked with back-end frameworks such as Flask for Python, SQL and NoSQL databases such as MongoDB and Firebase.</p>
+            </div>
+
+            <div class="resume-section">
+              <h2>02. EMPLOYMENT HISTORY</h2>
+              <!-- Employment history content -->
+            </div>
+
+            <div class="resume-pagination">
+              <div class="page-controls">
+                <span class="page-number">Page</span>
+                <button class="page-button active">1</button>
+                <button class="page-button">2</button>
+                <button class="win98-button search-btn">🔍</button>
+                <button class="win98-button zoom-btn">+</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Taskbar -->
+  <div class="win98-taskbar">
+    <div class="start-button" (click)="toggleStartMenu()">
+      <img src="assets/icons/start.png" alt="Start">
+      <span>Start</span>
+    </div>
+
+    <!-- Start Menu (hidden by default) -->
+    <div class="start-menu" *ngIf="startMenuOpen">
+      <!-- Start menu items -->
+    </div>
+
+    <!-- Open applications in taskbar -->
+    <div class="taskbar-items">
+      <div *ngIf="openWindows['about']"
+           class="taskbar-item"
+           [class.active]="activeWindow === 'about'"
+           (click)="focusApp('about')">
+        <img src="assets/icons/about.png" alt="About">
+        <span>About Me</span>
+      </div>
+      <div *ngIf="openWindows['resume']"
+           class="taskbar-item"
+           [class.active]="activeWindow === 'resume'"
+           (click)="focusApp('resume')">
+        <img src="assets/icons/resume.png" alt="Resume">
+        <span>Resume</span>
+      </div>
+    </div>
+
+    <!-- Clock -->
+    <div class="taskbar-clock">
+      {{ currentTime | date:'hh:mm a' }}
+    </div>
+  </div>
+</div>

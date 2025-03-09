@@ -6,6 +6,7 @@ import { AppRoutingModule } from './app-routing.module';
 import {HomeModule} from "./home/home.module";
 import { UnderConstructionComponent } from './under-construction/under-construction.component';
 import {NgOptimizedImage} from "@angular/common";
+import {CdkDrag} from "@angular/cdk/drag-drop";
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import {NgOptimizedImage} from "@angular/common";
     BrowserModule,
     HomeModule,
     AppRoutingModule,
-    NgOptimizedImage
+    NgOptimizedImage,
+    CdkDrag
   ],
   providers: [],
   bootstrap: [AppComponent]
