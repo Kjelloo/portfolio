@@ -1,4 +1,5 @@
-import {Component, OnInit} from '@angular/core';
+// app.component.ts
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {CdkDragEnd, CdkDragStart, CdkDragHandle } from "@angular/cdk/drag-drop";
 
 @Component({
@@ -6,12 +7,13 @@ import {CdkDragEnd, CdkDragStart, CdkDragHandle } from "@angular/cdk/drag-drop";
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit {
+export class AppComponent implements OnInit, OnDestroy {
   title = 'Kjell Schoke';
 
   currentTime: Date = new Date();
   startMenuOpen: boolean = false;
   activeWindow: string | null = null;
+  userMaximized: boolean = false;
 
   openWindows: {[key: string]: boolean} = {
     about: false,
@@ -54,13 +56,52 @@ export class AppComponent implements OnInit {
       this.currentTime = new Date();
     }, 1000);
 
-    // Open default windows on start
-    setTimeout(() => {
-      this.openApp('about');
-      setTimeout(() => {
-        this.openApp('resume');
-      }, 500);
-    }, 1000);
+    // Handle window resize
+    window.addEventListener('resize', this.handleResize.bind(this));
+  }
+
+  ngOnDestroy() {
+    window.removeEventListener('resize', this.handleResize.bind(this));
+  }
+
+  handleResize() {
+    const viewportWidth = window.innerWidth;
+    const viewportHeight = window.innerHeight;
+    const isMobile = viewportWidth < 768;
+
+    // For all open windows
+    Object.keys(this.openWindows).forEach(app => {
+      if (this.openWindows[app]) {
+        // Only apply auto-maximize to the active window on mobile
+        if (isMobile && app === this.activeWindow && !this.isMaximized[app]) {
+          // If we're on a mobile size and the active window isn't maximized yet,
+          // save the current size/position and maximize
+          this.previousSizes[app] = { ...this.windowSizes[app] };
+          this.previousPositions[app] = { ...this.windowPositions[app] };
+
+          // Maximize
+          this.windowSizes[app] = { width: '100%', height: 'calc(100% - 28px)' };
+          this.windowPositions[app] = { x: 0, y: 0 };
+          this.isMaximized[app] = true;
+        }
+        else if (!isMobile && this.isMaximized[app] && !this.userMaximized) {
+          // We've resized from mobile to desktop, restore the window
+          // only if it wasn't manually maximized by the user
+          this.windowSizes[app] = this.previousSizes[app] || { width: '500px', height: '400px' };
+          this.windowPositions[app] = this.previousPositions[app] || { x: 50, y: 50 };
+          this.isMaximized[app] = false;
+        }
+        else if (this.isMaximized[app]) {
+          // Adjust already maximized windows to fit new viewport
+          this.windowSizes[app] = { width: '100%', height: 'calc(100% - 28px)' };
+          this.windowPositions[app] = { x: 0, y: 0 };
+        }
+        else {
+          // For non-maximized windows, ensure they stay within viewport
+          this.ensureWindowInViewport(app);
+        }
+      }
+    });
   }
 
   toggleStartMenu() {
@@ -68,9 +109,58 @@ export class AppComponent implements OnInit {
   }
 
   openApp(app: string) {
+    console.log(`Opening app: ${app}`);
+
+    // Get viewport dimensions
+    const viewportWidth = window.innerWidth;
+    const viewportHeight = window.innerHeight;
+
+    // Calculate appropriate window size based on viewport
+    // Using percentages with maximum values
+    let width, height;
+
+    if (viewportWidth < 768) { // Mobile
+      width = Math.min(320, viewportWidth * 0.9) + 'px';
+      height = Math.min(450, viewportHeight * 0.7) + 'px';
+    } else if (viewportWidth < 1024) { // Tablet
+      width = Math.min(500, viewportWidth * 0.8) + 'px';
+      height = Math.min(500, viewportHeight * 0.8) + 'px';
+    } else { // Desktop
+      width = Math.min(650, viewportWidth * 0.6) + 'px';
+      height = Math.min(550, viewportHeight * 0.7) + 'px';
+    }
+
+    // Set the window size
+    this.windowSizes[app] = { width, height };
+
+    // Calculate center position
+    const widthNum = parseInt(width, 10);
+    const heightNum = parseInt(height, 10);
+    const centerX = (viewportWidth - widthNum) / 2;
+    const centerY = (viewportHeight - heightNum - 28) / 2; // Subtract taskbar height
+
+    // Set the window position to center
+    this.windowPositions[app] = { x: centerX, y: centerY };
+
     this.openWindows[app] = true;
     this.setActiveWindow(app);
     this.startMenuOpen = false;
+
+    // Auto-maximize ONLY on mobile devices when first opening
+    const isMobile = viewportWidth < 768;
+    if (isMobile) {
+      // Save current size and position before maximizing
+      this.previousSizes[app] = { ...this.windowSizes[app] };
+      this.previousPositions[app] = { ...this.windowPositions[app] };
+
+      // Use setTimeout to ensure the window is rendered before maximizing
+      setTimeout(() => {
+        // Maximize
+        this.windowSizes[app] = { width: '100%', height: 'calc(100% - 28px)' };
+        this.windowPositions[app] = { x: 0, y: 0 };
+        this.isMaximized[app] = true;
+      }, 50);
+    }
   }
 
   closeApp(app: string) {
@@ -90,6 +180,17 @@ export class AppComponent implements OnInit {
     this.activeWindow = null;
   }
 
+  resetDragPosition(app: string) {
+    // This helps reset the CDK drag position after programmatic position changes
+    setTimeout(() => {
+      const element = document.querySelector(`.${app}-window`) as HTMLElement;
+      if (element) {
+        // Force a reflow to reset the drag position
+        element.style.transform = 'none';
+      }
+    }, 0);
+  }
+
   maximizeApp(app: string) {
     if (this.isMaximized[app]) {
       // Restore previous size and position
@@ -101,11 +202,15 @@ export class AppComponent implements OnInit {
       this.previousSizes[app] = { ...this.windowSizes[app] };
       this.previousPositions[app] = { ...this.windowPositions[app] };
 
-      // Maximize
-      this.windowSizes[app] = { width: 'calc(100% - 28px)', height: 'calc(100% - 28px)' };
-      this.windowPositions[app] = { x: 10, y: 10 };
+      // Windows 98 maximized windows fill the entire screen
+      // and are positioned at (0,0)
+      this.windowSizes[app] = { width: '100%', height: 'calc(100vh - 28px)' };
+      this.windowPositions[app] = { x: 0, y: 0 };
       this.isMaximized[app] = true;
     }
+
+    // Reset the CDK drag position to avoid conflicts
+    this.resetDragPosition(app);
 
     // Make sure the window is active when maximized/restored
     this.setActiveWindow(app);
@@ -148,7 +253,59 @@ export class AppComponent implements OnInit {
     // Reset the drag element's position to avoid double-counting
     event.source.reset();
 
+    // Ensure the window stays within the viewport
+    this.ensureWindowInViewport(app);
+
     // Keep the window active after dragging
     this.setActiveWindow(app);
+  }
+
+// Add this method to keep windows within viewport bounds
+  ensureWindowInViewport(app: string) {
+    const viewportWidth = window.innerWidth;
+    const viewportHeight = window.innerHeight - 28; // Account for taskbar
+
+    // Get current window dimensions
+    let width = this.windowSizes[app].width;
+    let height = this.windowSizes[app].height;
+
+    // Convert percentage to pixels if needed
+    if (width.endsWith('%')) {
+      const percentage = parseFloat(width) / 100;
+      width = (viewportWidth * percentage) + 'px';
+    }
+
+    if (height.endsWith('%')) {
+      const percentage = parseFloat(height) / 100;
+      height = (viewportHeight * percentage) + 'px';
+    }
+
+    // Get window width and height in pixels
+    const widthPx = parseInt(width, 10);
+    const heightPx = parseInt(height, 10);
+
+    // Get current position
+    let x = this.windowPositions[app].x;
+    let y = this.windowPositions[app].y;
+
+    // Ensure window title bar is accessible (at least 20px visible)
+    if (x < -widthPx + 20) {
+      x = -widthPx + 20;
+    }
+
+    if (x > viewportWidth - 20) {
+      x = viewportWidth - 20;
+    }
+
+    if (y < 0) {
+      y = 0;
+    }
+
+    if (y > viewportHeight - 20) {
+      y = viewportHeight - 20;
+    }
+
+    // Update position
+    this.windowPositions[app] = { x, y };
   }
 }

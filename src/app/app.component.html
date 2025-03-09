@@ -1,3 +1,4 @@
+<!-- app.component.html -->
 <div class="win98-desktop">
   <!-- Desktop Background -->
   <div class="desktop-background">
@@ -5,19 +6,19 @@
     <div class="desktop-icons">
       <div class="desktop-icon" (click)="openApp('about')">
         <img src="assets/icons/about.png" alt="About Me">
-        <span>About Me</span>
+        <span class="not-selectable">About Me</span>
       </div>
       <div class="desktop-icon" (click)="openApp('resume')">
         <img src="assets/icons/resume.png" alt="Resume">
-        <span>Resume</span>
+        <span class="not-selectable">Resume</span>
       </div>
       <div class="desktop-icon" (click)="openApp('mail')">
         <img src="assets/icons/mail.png" alt="Mail">
-        <span>Mail</span>
+        <span class="not-selectable">Mail</span>
       </div>
       <div class="desktop-icon" (click)="openApp('github')">
         <img src="assets/icons/github.png" alt="GitHub">
-        <span>GitHub</span>
+        <span class="not-selectable">GitHub</span>
       </div>
     </div>
 
@@ -133,7 +134,7 @@
   <div class="win98-taskbar">
     <div class="start-button" (click)="toggleStartMenu()">
       <img src="assets/icons/start.png" alt="Start">
-      <span>Start</span>
+      <span class="not-selectable">Start</span>
     </div>
 
     <!-- Start Menu (hidden by default) -->
@@ -148,19 +149,19 @@
            [class.active]="activeWindow === 'about'"
            (click)="focusApp('about')">
         <img src="assets/icons/about.png" alt="About">
-        <span>About Me</span>
+        <span class="not-selectable">About Me</span>
       </div>
       <div *ngIf="openWindows['resume']"
            class="taskbar-item"
            [class.active]="activeWindow === 'resume'"
            (click)="focusApp('resume')">
         <img src="assets/icons/resume.png" alt="Resume">
-        <span>Resume</span>
+        <span class="not-selectable">Resume</span>
       </div>
     </div>
 
     <!-- Clock -->
-    <div class="taskbar-clock">
+    <div class="taskbar-clock not-selectable">
       {{ currentTime | date:'hh:mm a' }}
     </div>
   </div>

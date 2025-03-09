@@ -74,8 +74,8 @@ body {
 }
 
 .about-window {
-  width: 500px;
-  height: 400px;
+  min-width: 100px;
+  min-height: 200px;
   left: 120px;
   top: 50px;
 }
@@ -404,4 +404,32 @@ body {
 
 .desktop-icon:active {
   background-color: rgba(0, 0, 128, 0.5);
+}
+
+@media (max-width: 768px) {
+  .title-bar-controls button {
+    min-width: 24px;
+    min-height: 24px;
+    margin-left: 4px;
+  }
+
+  .win98-title-bar {
+    height: 30px;
+    padding: 0 0px;
+    font-size: 10px;
+  }
+
+  .win98-button {
+    min-height: 30px;
+    padding: 6px 12px;
+  }
+}
+
+.not-selectable {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
