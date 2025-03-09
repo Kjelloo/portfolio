@@ -73,6 +73,15 @@ body {
   pointer-events: auto;
 }
 
+.win98-window.maximized {
+  top: 0 !important;
+  left: 0 !important;
+  width: 100% !important;
+  height: calc(100vh - 28px) !important;
+  border-width: 2px 0 0 0 !important;
+  box-shadow: none !important;
+}
+
 .about-window {
   min-width: 100px;
   min-height: 200px;
@@ -415,7 +424,6 @@ body {
 
   .win98-title-bar {
     height: 30px;
-    padding: 0 0px;
     font-size: 10px;
   }
 

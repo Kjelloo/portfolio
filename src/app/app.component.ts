@@ -1,6 +1,6 @@
 // app.component.ts
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {CdkDragEnd, CdkDragStart, CdkDragHandle } from "@angular/cdk/drag-drop";
+import {CdkDragEnd, CdkDragStart} from "@angular/cdk/drag-drop";
 
 @Component({
   selector: 'app-root',
@@ -13,7 +13,6 @@ export class AppComponent implements OnInit, OnDestroy {
   currentTime: Date = new Date();
   startMenuOpen: boolean = false;
   activeWindow: string | null = null;
-  userMaximized: boolean = false;
 
   openWindows: {[key: string]: boolean} = {
     about: false,
@@ -32,8 +31,8 @@ export class AppComponent implements OnInit, OnDestroy {
   };
 
   windowSizes: {[key: string]: {width: string, height: string}} = {
-    about: { width: '500px', height: '400px' },
-    resume: { width: '650px', height: '500px' },
+    about: { width: '600px', height: '500px' },
+    resume: { width: '750px', height: '600px' },
     photos: { width: '450px', height: '350px' },
     mail: { width: '400px', height: '300px' },
     github: { width: '450px', height: '350px' }
@@ -58,6 +57,9 @@ export class AppComponent implements OnInit, OnDestroy {
 
     // Handle window resize
     window.addEventListener('resize', this.handleResize.bind(this));
+
+    // Initial resize check to handle mobile sizing on first load
+    this.handleResize();
   }
 
   ngOnDestroy() {
@@ -72,32 +74,25 @@ export class AppComponent implements OnInit, OnDestroy {
     // For all open windows
     Object.keys(this.openWindows).forEach(app => {
       if (this.openWindows[app]) {
-        // Only apply auto-maximize to the active window on mobile
-        if (isMobile && app === this.activeWindow && !this.isMaximized[app]) {
-          // If we're on a mobile size and the active window isn't maximized yet,
-          // save the current size/position and maximize
+        // Apply auto-maximize to all windows on mobile
+        if (isMobile && !this.isMaximized[app]) {
+          // Save the current size/position before maximizing
           this.previousSizes[app] = { ...this.windowSizes[app] };
           this.previousPositions[app] = { ...this.windowPositions[app] };
 
-          // Maximize
-          this.windowSizes[app] = { width: '100%', height: 'calc(100% - 28px)' };
+          // Maximize the window to fill the screen
+          this.windowSizes[app] = { width: '100%', height: 'calc(100vh - 28px)' };
           this.windowPositions[app] = { x: 0, y: 0 };
           this.isMaximized[app] = true;
         }
-        else if (!isMobile && this.isMaximized[app] && !this.userMaximized) {
-          // We've resized from mobile to desktop, restore the window
-          // only if it wasn't manually maximized by the user
+        else if (!isMobile && this.isMaximized[app]) {
+          // Restore the window when going back to desktop
           this.windowSizes[app] = this.previousSizes[app] || { width: '500px', height: '400px' };
           this.windowPositions[app] = this.previousPositions[app] || { x: 50, y: 50 };
           this.isMaximized[app] = false;
         }
-        else if (this.isMaximized[app]) {
-          // Adjust already maximized windows to fit new viewport
-          this.windowSizes[app] = { width: '100%', height: 'calc(100% - 28px)' };
-          this.windowPositions[app] = { x: 0, y: 0 };
-        }
-        else {
-          // For non-maximized windows, ensure they stay within viewport
+        else if (!isMobile) {
+          // Ensure window stays within viewport (only for desktop)
           this.ensureWindowInViewport(app);
         }
       }
@@ -114,53 +109,45 @@ export class AppComponent implements OnInit, OnDestroy {
     // Get viewport dimensions
     const viewportWidth = window.innerWidth;
     const viewportHeight = window.innerHeight;
+    const isMobile = viewportWidth < 768;
 
     // Calculate appropriate window size based on viewport
-    // Using percentages with maximum values
     let width, height;
 
-    if (viewportWidth < 768) { // Mobile
-      width = Math.min(320, viewportWidth * 0.9) + 'px';
-      height = Math.min(450, viewportHeight * 0.7) + 'px';
+    if (isMobile) { // Mobile - full screen
+      width = '100%';
+      height = 'calc(100vh - 28px)';
     } else if (viewportWidth < 1024) { // Tablet
-      width = Math.min(500, viewportWidth * 0.8) + 'px';
-      height = Math.min(500, viewportHeight * 0.8) + 'px';
+      width = Math.min(700, viewportWidth * 0.8) + 'px';
+      height = Math.min(600, viewportHeight * 0.8) + 'px';
     } else { // Desktop
-      width = Math.min(650, viewportWidth * 0.6) + 'px';
-      height = Math.min(550, viewportHeight * 0.7) + 'px';
+      width = Math.min(850, viewportWidth * 0.6) + 'px';
+      height = Math.min(650, viewportHeight * 0.7) + 'px';
     }
 
     // Set the window size
     this.windowSizes[app] = { width, height };
 
-    // Calculate center position
-    const widthNum = parseInt(width, 10);
-    const heightNum = parseInt(height, 10);
-    const centerX = (viewportWidth - widthNum) / 2;
-    const centerY = (viewportHeight - heightNum - 28) / 2; // Subtract taskbar height
+    // For mobile, position at (0,0), otherwise center
+    if (isMobile) {
+      this.windowPositions[app] = { x: 0, y: 0 };
+      this.isMaximized[app] = true;
+      this.previousSizes[app] = { width: '700px', height: '600px' }; // Default for restoration
+      this.previousPositions[app] = { x: 50, y: 50 }; // Default for restoration
+    } else {
+      // Calculate center position for desktop/tablet
+      const widthNum = parseInt(width, 10);
+      const heightNum = parseInt(height, 10);
+      const centerX = Math.max(0, (viewportWidth - widthNum) / 2);
+      const centerY = Math.max(0, (viewportHeight - heightNum - 28) / 2);
 
-    // Set the window position to center
-    this.windowPositions[app] = { x: centerX, y: centerY };
+      this.windowPositions[app] = { x: centerX, y: centerY };
+      this.isMaximized[app] = false;
+    }
 
     this.openWindows[app] = true;
     this.setActiveWindow(app);
     this.startMenuOpen = false;
-
-    // Auto-maximize ONLY on mobile devices when first opening
-    const isMobile = viewportWidth < 768;
-    if (isMobile) {
-      // Save current size and position before maximizing
-      this.previousSizes[app] = { ...this.windowSizes[app] };
-      this.previousPositions[app] = { ...this.windowPositions[app] };
-
-      // Use setTimeout to ensure the window is rendered before maximizing
-      setTimeout(() => {
-        // Maximize
-        this.windowSizes[app] = { width: '100%', height: 'calc(100% - 28px)' };
-        this.windowPositions[app] = { x: 0, y: 0 };
-        this.isMaximized[app] = true;
-      }, 50);
-    }
   }
 
   closeApp(app: string) {
@@ -180,41 +167,16 @@ export class AppComponent implements OnInit, OnDestroy {
     this.activeWindow = null;
   }
 
-  resetDragPosition(app: string) {
-    // This helps reset the CDK drag position after programmatic position changes
-    setTimeout(() => {
-      const element = document.querySelector(`.${app}-window`) as HTMLElement;
-      if (element) {
-        // Force a reflow to reset the drag position
-        element.style.transform = 'none';
-      }
-    }, 0);
-  }
-
-  maximizeApp(app: string) {
-    if (this.isMaximized[app]) {
-      // Restore previous size and position
-      this.windowSizes[app] = this.previousSizes[app];
-      this.windowPositions[app] = this.previousPositions[app];
-      this.isMaximized[app] = false;
-    } else {
-      // Save current size and position
-      this.previousSizes[app] = { ...this.windowSizes[app] };
-      this.previousPositions[app] = { ...this.windowPositions[app] };
-
-      // Windows 98 maximized windows fill the entire screen
-      // and are positioned at (0,0)
-      this.windowSizes[app] = { width: '100%', height: 'calc(100vh - 28px)' };
-      this.windowPositions[app] = { x: 0, y: 0 };
-      this.isMaximized[app] = true;
-    }
-
-    // Reset the CDK drag position to avoid conflicts
-    this.resetDragPosition(app);
-
-    // Make sure the window is active when maximized/restored
-    this.setActiveWindow(app);
-  }
+  // resetDragPosition(app: string) {
+  //   // This helps reset the CDK drag position after programmatic position changes
+  //   setTimeout(() => {
+  //     const element = document.querySelector(`.${app}-window`) as HTMLElement;
+  //     if (element) {
+  //       // Force a reflow to reset the drag position
+  //       element.style.transform = 'none';
+  //     }
+  //   }, 0);
+  // }
 
   setActiveWindow(app: string) {
     this.activeWindow = app;
@@ -234,13 +196,21 @@ export class AppComponent implements OnInit, OnDestroy {
     // Ensure the window is active when dragging starts
     this.setActiveWindow(app);
 
-    // If the window is maximized, restore it first
-    if (this.isMaximized[app]) {
-      this.maximizeApp(app); // This will toggle it back to normal size
+    // Don't allow dragging on mobile
+    const isMobile = window.innerWidth < 768;
+    if (isMobile) {
+      event.source._dragRef.reset();
     }
   }
 
   onDragEnded(event: CdkDragEnd, app: string) {
+    // Don't allow dragging on mobile
+    const isMobile = window.innerWidth < 768;
+    if (isMobile) {
+      event.source.reset();
+      return;
+    }
+
     // When drag ends, get the change in position
     const dragDelta = event.source.getFreeDragPosition();
 
@@ -260,7 +230,7 @@ export class AppComponent implements OnInit, OnDestroy {
     this.setActiveWindow(app);
   }
 
-// Add this method to keep windows within viewport bounds
+  // Keep windows within viewport bounds
   ensureWindowInViewport(app: string) {
     const viewportWidth = window.innerWidth;
     const viewportHeight = window.innerHeight - 28; // Account for taskbar
