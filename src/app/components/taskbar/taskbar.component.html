@@ -1,0 +1,27 @@
+<div class="win98-taskbar">
+  <div class="start-button" (click)="toggleStartMenu()">
+    <img src="assets/icons/start.png" alt="Start">
+    <span class="not-selectable">Start</span>
+  </div>
+
+  <!-- Start Menu -->
+  <div class="start-menu" *ngIf="startMenuOpen">
+    <!-- Start menu items -->
+  </div>
+
+  <!-- Open applications in taskbar -->
+  <div class="taskbar-items">
+    <div *ngFor="let window of openWindows"
+         class="taskbar-item"
+         [class.active]="activeWindowId === window.id"
+         (click)="focusWindow(window.id)">
+      <img [src]="'assets/icons/' + window.id + '.png'" [alt]="window.title">
+      <span class="not-selectable">{{ window.title }}</span>
+    </div>
+  </div>
+
+  <!-- Clock -->
+  <div class="taskbar-clock not-selectable">
+    {{ currentTime | date:'hh:mm a' }}
+  </div>
+</div> 

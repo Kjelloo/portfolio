@@ -1,0 +1,39 @@
+/* Global styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'MS Sans Serif', sans-serif;
+  overflow: hidden;
+}
+
+/* Common utility classes */
+.not-selectable {
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+}
+
+.win98-button {
+  background: #c0c0c0;
+  border: 1px solid #808080;
+  border-top: 1px solid #ffffff;
+  border-left: 1px solid #ffffff;
+  padding: 2px 6px;
+  cursor: pointer;
+  font-family: 'MS Sans Serif', sans-serif;
+}
+
+.win98-button:hover {
+  background: #d0d0d0;
+}
+
+.win98-button:active {
+  border: 1px solid #ffffff;
+  border-top: 1px solid #808080;
+  border-left: 1px solid #808080;
+}

@@ -1,0 +1,26 @@
+<div *ngIf="window?.isOpen"
+     cdkDrag
+     (cdkDragStarted)="onDragStarted($event)"
+     (cdkDragEnded)="onDragEnded($event)"
+     class="win98-window"
+     [class.maximized]="window?.isMaximized"
+     [class.active]="isActive"
+     [ngStyle]="{
+       'z-index': isActive ? 10 : 5,
+       'width': window?.size?.width || '600px',
+       'height': window?.size?.height || '400px',
+       'left': window?.position?.x + 'px' || '0',
+       'top': window?.position?.y + 'px' || '0'
+     }"
+     (mousedown)="focusWindow()">
+  <div class="win98-title-bar" cdkDragHandle>
+    <div class="title-bar-text">{{ window?.title || 'Window' }}</div>
+    <div class="title-bar-controls">
+      <button aria-label="Minimize" (click)="minimizeWindow()">&#x2212;</button>
+      <button aria-label="Close" (click)="closeWindow()">&#x2715;</button>
+    </div>
+  </div>
+  <div class="win98-window-content">
+    <ng-content></ng-content>
+  </div>
+</div> 
