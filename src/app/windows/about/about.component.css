@@ -1,0 +1,242 @@
+.about-container {
+  padding: 16px;
+  background-color: var(--win98-button-face);
+  font-family: 'MS Sans Serif', Arial, sans-serif;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.profile-section {
+  display: flex;
+  gap: 16px;
+  padding: 12px;
+  background-color: white;
+  border: 2px solid;
+  border-color: var(--win98-dark) var(--win98-light) var(--win98-light) var(--win98-dark);
+}
+
+.profile-image {
+  width: 140px;
+  height: 140px;
+  border: 2px solid;
+  border-color: var(--win98-dark) var(--win98-light) var(--win98-light) var(--win98-dark);
+  padding: 1px;
+  background-color: #dedede;
+  flex-shrink: 0;
+}
+
+.profile-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.profile-info {
+  flex: 1;
+  display: flex;
+  align-items: center;
+}
+
+.name-title {
+  flex: 1;
+}
+
+.name {
+  font-size: 24px;
+  font-weight: bold;
+  color: var(--win98-highlight);
+  margin: 0 0 8px 0;
+  text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.2);
+}
+
+.title {
+  font-size: 16px;
+  color: var(--win98-text);
+  margin: 0;
+  font-weight: normal;
+}
+
+.social-links,
+.about-section,
+.technologies-section {
+  background-color: white;
+  border: 2px solid;
+  border-color: var(--win98-dark) var(--win98-light) var(--win98-light) var(--win98-dark);
+}
+
+.tab-header {
+  background-color: var(--win98-highlight);
+  color: var(--win98-light);
+  padding: 4px 8px;
+  font-weight: bold;
+}
+
+.tab-content {
+  padding: 12px;
+}
+
+.social-links .tab-content {
+  display: flex;
+  gap: 16px;
+}
+
+.social-link {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 12px;
+  text-decoration: none;
+  color: var(--win98-text);
+  background-color: var(--win98-button-face);
+  border: 2px solid;
+  border-color: var(--win98-light) var(--win98-dark) var(--win98-dark) var(--win98-light);
+}
+
+.social-link:hover {
+  text-decoration: underline;
+}
+
+.social-link:active {
+  border-color: var(--win98-dark) var(--win98-light) var(--win98-light) var(--win98-dark);
+}
+
+.social-link img {
+  width: 20px;
+  height: 20px;
+}
+
+.about-section .tab-content p {
+  margin: 0;
+  line-height: 1.5;
+  color: var(--win98-text);
+}
+
+.tech-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+  gap: 16px;
+  padding: 8px;
+}
+
+.tech-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 12px;
+  background-color: var(--win98-button-face);
+  border: 2px solid;
+  border-color: var(--win98-light) var(--win98-dark) var(--win98-dark) var(--win98-light);
+  cursor: default;
+}
+
+.tech-item img {
+  width: 64px;
+  height: 64px;
+  object-fit: contain;
+}
+
+.tech-item span {
+  font-size: 15px;
+  color: var(--win98-text);
+  text-align: center;
+}
+
+.not-selectable {
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+}
+
+.projects-section {
+  background-color: white;
+  border: 2px solid;
+  border-color: var(--win98-dark) var(--win98-light) var(--win98-light) var(--win98-dark);
+}
+
+.projects-toolbar {
+  padding: 4px;
+  background-color: var(--win98-button-face);
+  border-bottom: 1px solid var(--win98-dark);
+  display: flex;
+  justify-content: flex-end;
+}
+
+.view-options {
+  display: flex;
+  gap: 4px;
+}
+
+.view-options .toolbar-button {
+  padding: 4px;
+  width: 24px;
+  height: 24px;
+}
+
+.view-options .toolbar-button.active {
+  background-color: var(--win98-button-highlight);
+  border-color: var(--win98-dark) var(--win98-light) var(--win98-light) var(--win98-dark);
+}
+
+.projects-list {
+  background-color: white;
+}
+
+.project-header {
+  display: grid;
+  grid-template-columns: 2fr 1fr 100px;
+  gap: 8px;
+  padding: 4px 8px;
+  background-color: var(--win98-button-face);
+  border-bottom: 1px solid var(--win98-dark);
+  font-weight: bold;
+  color: var(--win98-text);
+}
+
+.project-item {
+  display: grid;
+  grid-template-columns: 2fr 1fr 100px;
+  gap: 8px;
+  padding: 8px;
+  text-decoration: none;
+  color: var(--win98-text);
+  border-bottom: 1px solid var(--win98-button-highlight);
+}
+
+.project-item:hover {
+  background-color: var(--win98-highlight);
+  color: var(--win98-light);
+}
+
+.project-item:last-child {
+  border-bottom: none;
+}
+
+.project-name {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.project-name img {
+  width: 16px;
+  height: 16px;
+}
+
+.project-tech {
+  font-size: 14px;
+}
+
+.project-date {
+  font-size: 14px;
+  text-align: right;
+}
+
+/* Update hover state to only change text color for the hovered item */
+.project-item:hover .project-name,
+.project-item:hover .project-tech,
+.project-item:hover .project-date {
+  color: var(--win98-light);
+}

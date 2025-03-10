@@ -10,7 +10,7 @@ export class DesktopService {
   private desktopIcons: DesktopIcon[] = [
     {
       id: 'about',
-      title: 'My Computer',
+      title: 'About Me',
       iconPath: 'assets/icons/about.png',
       action: () => this.windowService.openWindow('about')
     },
@@ -22,7 +22,7 @@ export class DesktopService {
     },
     {
       id: 'mail',
-      title: 'Mail me',
+      title: 'Email Me',
       iconPath: 'assets/icons/mail.png',
       action: () => window.location.href = "mailto:kjell.schoke@outlook.com"
     },
@@ -36,6 +36,12 @@ export class DesktopService {
       'id': 'trash',
       'title': 'Recycle Bin',
       'iconPath': 'assets/icons/trash.png',
+      'action': () => undefined
+    },
+    {
+      'id': 'computer',
+      'title': 'Computer',
+      'iconPath': 'assets/icons/computer.png',
       'action': () => undefined
     }
   ];
