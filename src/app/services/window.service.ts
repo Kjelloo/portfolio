@@ -77,7 +77,7 @@ export class WindowService implements OnDestroy{
     const defaultWindows: Window[] = [
       {
         id: 'about',
-        title: 'About Me',
+        title: 'My Computer',
         isOpen: false,
         isMaximized: false,
         isMinimized: false,

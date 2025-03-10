@@ -27,6 +27,7 @@
   width: 20px;
   height: 20px;
   margin-right: 4px;
+  image-rendering: pixelated;
 }
 
 .start-button span {
@@ -64,6 +65,7 @@
   width: 17px;
   height: 17px;
   margin-right: 5px;
+  image-rendering: pixelated;
 }
 
 .taskbar-item span {

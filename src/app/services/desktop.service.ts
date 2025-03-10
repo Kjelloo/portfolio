@@ -10,19 +10,19 @@ export class DesktopService {
   private desktopIcons: DesktopIcon[] = [
     {
       id: 'about',
-      title: 'About Me',
+      title: 'My Computer',
       iconPath: 'assets/icons/about.png',
       action: () => this.windowService.openWindow('about')
     },
     {
       id: 'resume',
       title: 'Resume',
-      iconPath: 'assets/icons/resume.png',
+      iconPath: 'assets/icons/file.png',
       action: () => this.windowService.openWindow('resume')
     },
     {
       id: 'mail',
-      title: 'Mail',
+      title: 'Mail me',
       iconPath: 'assets/icons/mail.png',
       action: () => window.location.href = "mailto:kjell.schoke@outlook.com"
     },
@@ -31,6 +31,12 @@ export class DesktopService {
       title: 'GitHub',
       iconPath: 'assets/icons/github.png',
       action: () => window.open('https://github.com/kjelloo', '_blank')
+    },
+    {
+      'id': 'trash',
+      'title': 'Recycle Bin',
+      'iconPath': 'assets/icons/trash.png',
+      'action': () => undefined
     }
   ];
 
