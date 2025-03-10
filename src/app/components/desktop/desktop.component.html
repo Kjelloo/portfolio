@@ -1,0 +1,22 @@
+<div class="win98-desktop">
+  <!-- Desktop Background -->
+  <div class="desktop-background">
+    <!-- Desktop Icons -->
+    <div class="desktop-icons">
+      <div *ngFor="let icon of desktopIcons" 
+           class="desktop-icon" 
+           (click)="handleIconClick(icon.id)">
+        <img [src]="icon.iconPath" [alt]="icon.title">
+        <span class="not-selectable">{{ icon.title }}</span>
+      </div>
+    </div>
+
+    <!-- Windows Container -->
+    <div class="window-container">
+      <ng-content></ng-content>
+    </div>
+  </div>
+
+  <!-- Taskbar -->
+  <ng-content select="app-taskbar"></ng-content>
+</div> 
