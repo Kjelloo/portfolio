@@ -22,7 +22,7 @@ export class WindowComponent implements OnInit, OnDestroy {
   startLeft = 0;
   startTop = 0;
 
-  constructor(private windowService: WindowService) {}
+  constructor(protected windowService: WindowService) {}
 
   ngOnInit() {
     if (!this.window) {
@@ -59,10 +59,10 @@ export class WindowComponent implements OnInit, OnDestroy {
   startResizing(event: MouseEvent, handle: 'bottom-left' | 'bottom-right') {
     if (!this.window || !this.windowElement) return;
     if (this.window.isMaximized) return;
-    
+
     event.preventDefault();
     event.stopPropagation();
-    
+
     this.isResizing = true;
     this.resizeHandle = handle;
     this.startX = event.clientX;
@@ -95,7 +95,7 @@ export class WindowComponent implements OnInit, OnDestroy {
         const newWidth = Math.max(200, this.startWidth - deltaX);
         const newHeight = Math.max(100, this.startHeight + deltaY);
         const newX = this.startLeft + deltaX;
-        
+
         this.windowService.updateWindowPosition(this.window.id, { x: newX, y: this.startTop });
         this.windowService.updateWindowSize(this.window.id, {
           width: `${newWidth}px`,

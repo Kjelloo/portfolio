@@ -18,7 +18,7 @@
       <button aria-label="Close" (click)="close()">×</button>
     </div>
   </div>
-  <div class="win98-window-content">
+  <div class="win98-window-content" (click)="this.windowService.setActiveWindow(this.window.id)">
     <ng-content></ng-content>
   </div>
   <div class="resize-handle bottom-left" (mousedown)="startResizing($event, 'bottom-left'); $event.stopPropagation()"></div>
