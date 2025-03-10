@@ -13,9 +13,9 @@
   <div class="win98-title-bar" (mousedown)="startDragging($event)">
     <div class="title-bar-text">{{ window.title || 'Window' }}</div>
     <div class="title-bar-controls">
-      <button aria-label="Minimize" (click)="minimize()">_</button>
-      <button aria-label="Maximize" (click)="toggleMaximize()">□</button>
-      <button aria-label="Close" (click)="close()">×</button>
+      <button aria-label="Minimize" (click)="minimize()">🗕</button>
+      <button aria-label="Maximize" (click)="toggleMaximize()">🗖</button>
+      <button aria-label="Close" (click)="close()">🗙</button>
     </div>
   </div>
   <div class="win98-window-content" (click)="this.windowService.setActiveWindow(this.window.id)">

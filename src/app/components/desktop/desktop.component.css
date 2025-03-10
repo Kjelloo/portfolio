@@ -35,15 +35,15 @@
 }
 
 .desktop-icon img {
-  width: 32px;
-  height: 32px;
+  width: 40px;
+  height: 40px;
   margin-bottom: 5px;
 }
 
 .desktop-icon span {
   color: white;
   text-align: center;
-  font-size: 12px;
+  font-size: 14px;
   text-shadow: 1px 1px 1px black; /* For better readability on various backgrounds */
 }
 
@@ -73,4 +73,4 @@
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
-} 
+}

@@ -35,13 +35,13 @@
 .win98-title-bar {
   background-color: var(--win98-highlight);
   color: var(--win98-light);
-  padding: 2px 2px;
+  padding: 5px 5px;
   display: flex;
   justify-content: space-between;
   align-items: center;
   font-weight: bold;
-  font-size: 12px;
-  height: 18px;
+  font-size: 16px;
+  height: 24px;
   cursor: move;
   user-select: none;
 }
@@ -55,9 +55,9 @@
 }
 
 .title-bar-controls button {
-  width: 16px;
-  height: 14px;
-  margin-left: 2px;
+  width: 20px;
+  height: 18px;
+  margin-left: 4px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -66,7 +66,7 @@
   background-color: var(--win98-button-face);
   color: var(--win98-text);
   position: relative;
-  font-size: 9px;
+  font-size: 12px;
 }
 
 .title-bar-controls button:active {
