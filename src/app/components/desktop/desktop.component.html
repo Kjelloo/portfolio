@@ -2,9 +2,9 @@
   <!-- Desktop Background -->
   <div class="desktop-background">
     <!-- Desktop Icons -->
-    <div class="desktop-icons">
-      <div *ngFor="let icon of desktopIcons" 
-           class="desktop-icon" 
+    <div class="desktop-icons not-selectable">
+      <div *ngFor="let icon of desktopIcons"
+           class="desktop-icon"
            (click)="handleIconClick(icon.id)">
         <img [src]="icon.iconPath" [alt]="icon.title">
         <span class="not-selectable">{{ icon.title }}</span>
@@ -19,4 +19,4 @@
 
   <!-- Taskbar -->
   <ng-content select="app-taskbar"></ng-content>
-</div> 
+</div>
