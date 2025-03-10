@@ -16,8 +16,8 @@
   box-shadow: 2px 2px 0 var(--win98-shadow);
   overflow: hidden;
   pointer-events: auto;
-  min-width: 200px;
-  min-height: 100px;
+  min-height: 480px;
+  min-width: 320px;
 }
 
 .win98-window.maximized {
