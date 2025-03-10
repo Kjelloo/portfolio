@@ -43,6 +43,7 @@
   font-size: 12px;
   height: 18px;
   cursor: move;
+  user-select: none;
 }
 
 .title-bar-text {

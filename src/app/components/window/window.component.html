@@ -9,9 +9,8 @@
        'height': window?.size?.height || '400px',
        'left': (window?.position?.x || 0) + 'px',
        'top': (window?.position?.y || 0) + 'px'
-     }"
-     (mousedown)="startDragging($event)">
-  <div class="win98-title-bar">
+     }">
+  <div class="win98-title-bar" (mousedown)="startDragging($event)">
     <div class="title-bar-text">{{ window?.title || 'Window' }}</div>
     <div class="title-bar-controls">
       <button aria-label="Minimize" (click)="minimize()">_</button>
@@ -22,6 +21,6 @@
   <div class="win98-window-content">
     <ng-content></ng-content>
   </div>
-  <div class="resize-handle bottom-left" (mousedown)="startResizing($event, 'bottom-left')"></div>
-  <div class="resize-handle bottom-right" (mousedown)="startResizing($event, 'bottom-right')"></div>
+  <div class="resize-handle bottom-left" (mousedown)="startResizing($event, 'bottom-left'); $event.stopPropagation()"></div>
+  <div class="resize-handle bottom-right" (mousedown)="startResizing($event, 'bottom-right'); $event.stopPropagation()"></div>
 </div>

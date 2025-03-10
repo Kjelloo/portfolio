@@ -1,5 +1,4 @@
 import { Component, Input, OnInit, OnDestroy, ElementRef, ViewChild } from '@angular/core';
-import { CdkDragEnd, CdkDragStart } from '@angular/cdk/drag-drop';
 import { WindowService } from '../../services/window.service';
 import { Window } from '../../models/window.model';
 
@@ -60,6 +59,10 @@ export class WindowComponent implements OnInit, OnDestroy {
   startResizing(event: MouseEvent, handle: 'bottom-left' | 'bottom-right') {
     if (!this.window || !this.windowElement) return;
     if (this.window.isMaximized) return;
+    
+    event.preventDefault();
+    event.stopPropagation();
+    
     this.isResizing = true;
     this.resizeHandle = handle;
     this.startX = event.clientX;
