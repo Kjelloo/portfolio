@@ -1,11 +1,11 @@
-import { Injectable } from '@angular/core';
+import {Injectable, OnDestroy} from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { Window } from '../models/window.model';
 
 @Injectable({
   providedIn: 'root'
 })
-export class WindowService {
+export class WindowService implements OnDestroy{
   private windows: Map<string, Window> = new Map();
   private activeWindowId = new BehaviorSubject<string | null>(null);
   private windowsSubject = new BehaviorSubject<Window[]>([]);

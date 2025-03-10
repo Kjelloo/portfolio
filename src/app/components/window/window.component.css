@@ -112,7 +112,7 @@
 
   .win98-title-bar {
     height: 30px;
-    font-size: 10px;
+    font-size: 15px;
   }
 
   .win98-window.maximized {
@@ -131,4 +131,4 @@
   border: 2px solid #000080;
   border-top: 2px solid #ffffff;
   border-left: 2px solid #ffffff;
-} 
+}

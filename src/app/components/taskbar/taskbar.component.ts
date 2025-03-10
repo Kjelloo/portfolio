@@ -39,10 +39,6 @@ export class TaskbarComponent implements OnInit, OnDestroy {
   }
 
   focusWindow(windowId: string) {
-    this.windowService.setActiveWindow(windowId);
+    this.windowService.restoreWindow(windowId);
   }
-
-  closeWindow(windowId: string) {
-    this.windowService.closeWindow(windowId);
-  }
-} 
+}
