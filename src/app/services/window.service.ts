@@ -44,7 +44,7 @@ export class WindowService implements OnDestroy{
           windowConfig.previousPosition = { ...windowConfig.position };
 
           // Maximize window
-          windowConfig.size = { width: '100%', height: 'calc(100vh - 28px)' };
+          windowConfig.size = { width: '100%', height: 'calc(100vh - 40px)' };
           windowConfig.position = { x: 0, y: 0 };
           windowConfig.isMaximized = true;
         } else if (!isMobile && windowConfig.isMaximized) {
@@ -68,7 +68,7 @@ export class WindowService implements OnDestroy{
 
     // Calculate center position
     const x = Math.max(0, (viewportWidth - width) / 2);
-    const y = Math.max(0, (viewportHeight - height - 28) / 2); // 28px for taskbar
+    const y = Math.max(0, (viewportHeight - height - 40) / 2); // -40px for taskbar
 
     return { x, y };
   }
@@ -120,11 +120,11 @@ export class WindowService implements OnDestroy{
       const isMobile = viewportWidth < 768;
 
       if (isMobile) {
-        windowConfig.size = { width: '100%', height: 'calc(100vh - 28px)' };
+        windowConfig.size = { width: '100%', height: 'calc(100vh - 40px)' };
         windowConfig.position = { x: 0, y: 0 };
         windowConfig.isMaximized = true;
       } else {
-        windowConfig.size = { width: '600px', height: '500px' };
+        windowConfig.size = { width: '800px', height: '700px' };
         windowConfig.position = this.calculateCenterPosition(windowConfig.size);
         windowConfig.isMaximized = false;
       }
@@ -200,7 +200,7 @@ export class WindowService implements OnDestroy{
       if (windowConfig.isMaximized) {
         windowConfig.previousSize = { ...windowConfig.size };
         windowConfig.previousPosition = { ...windowConfig.position };
-        windowConfig.size = { width: '100%', height: 'calc(100vh - 28px)' };
+        windowConfig.size = { width: '100%', height: 'calc(100vh - 40px)' };
         windowConfig.position = { x: 0, y: 0 };
       } else {
         windowConfig.size = windowConfig.previousSize || { width: '600px', height: '500px' };

@@ -24,9 +24,9 @@
   top: 8px !important;
   left: 8px !important;
   right: 8px !important;
-  bottom: 36px !important; /* 28px for taskbar + 8px for bottom spacing */
+  bottom: 48px !important;
   width: calc(100% - 16px) !important;
-  height: calc(100vh - 72px) !important; /* 28px for taskbar + 16px for top/bottom spacing + 28px for window title bar */
+  height: calc(100vh - 62px) !important;
   border-width: 2px !important;
   box-shadow: 2px 2px 0 var(--win98-shadow) !important;
 }

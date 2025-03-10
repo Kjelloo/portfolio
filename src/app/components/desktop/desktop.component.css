@@ -11,7 +11,7 @@
   top: 0;
   left: 0;
   width: 100%;
-  height: calc(100vh - 28px); /* Leave space for taskbar */
+  height: calc(100vh - 40px);
   z-index: 1;
 }
 
@@ -30,7 +30,8 @@
   flex-direction: column;
   align-items: center;
   width: 70px;
-  margin-bottom: 15px;
+  padding: 5px;
+  margin-bottom: 5px;
   cursor: pointer;
 }
 
@@ -44,7 +45,7 @@
   color: white;
   text-align: center;
   font-size: 14px;
-  text-shadow: 1px 1px 1px black; /* For better readability on various backgrounds */
+  text-shadow: 1px 1px 1px black;
 }
 
 .desktop-icon:hover {
