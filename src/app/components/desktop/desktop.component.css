@@ -1,38 +1,58 @@
 .win98-desktop {
-  width: 100vw;
+  width: 100%;
   height: 100vh;
-  background-color: #008080;
+  background-color: var(--win98-bg);
   position: relative;
   overflow: hidden;
 }
 
 .desktop-background {
+  position: fixed;
+  top: 0;
+  left: 0;
   width: 100%;
-  height: calc(100% - 28px);
-  position: relative;
+  height: calc(100vh - 28px); /* Leave space for taskbar */
+  z-index: 1;
 }
 
 .desktop-icons {
   padding: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 16px;
+  z-index: 2;
+  position: relative;
 }
 
 .desktop-icon {
-  width: 80px;
-  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 70px;
+  margin-bottom: 15px;
   cursor: pointer;
-  margin-bottom: 10px;
 }
 
 .desktop-icon img {
-  width: 48px;
-  height: 48px;
+  width: 32px;
+  height: 32px;
   margin-bottom: 5px;
 }
 
 .desktop-icon span {
   color: white;
+  text-align: center;
   font-size: 12px;
-  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
+  text-shadow: 1px 1px 1px black; /* For better readability on various backgrounds */
+}
+
+.desktop-icon:hover {
+  background-color: rgba(0, 0, 128, 0.3);
+}
+
+.desktop-icon:active {
+  background-color: rgba(0, 0, 128, 0.5);
 }
 
 .window-container {

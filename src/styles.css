@@ -15,12 +15,52 @@
 }
 
 /* Global Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 body {
   font-family: 'MS Sans Serif', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   margin: 0;
   padding: 0;
   overflow: hidden;
   color: var(--win98-text);
+}
+
+/* Common utility classes */
+.not-selectable {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* Windows 98 Button */
+.win98-button {
+  background-color: var(--win98-button-face);
+  border: 2px solid;
+  border-color: var(--win98-light) var(--win98-dark) var(--win98-dark) var(--win98-light);
+  box-shadow: 1px 1px 0 var(--win98-shadow);
+  padding: 2px 8px;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.win98-button:active {
+  border-color: var(--win98-dark) var(--win98-light) var(--win98-light) var(--win98-dark);
+  box-shadow: inset 1px 1px 0 var(--win98-dark);
+}
+
+/* Mobile Responsive Adjustments */
+@media (max-width: 768px) {
+  .win98-button {
+    min-height: 30px;
+    padding: 6px 12px;
+  }
 }
 
 /* Desktop */
@@ -369,22 +409,6 @@ body {
   height: 20px;
 }
 
-/* Windows 98 Button */
-.win98-button {
-  background-color: var(--win98-button-face);
-  border: 2px solid;
-  border-color: var(--win98-light) var(--win98-dark) var(--win98-dark) var(--win98-light);
-  box-shadow: 1px 1px 0 var(--win98-shadow);
-  padding: 2px 8px;
-  font-size: 12px;
-  cursor: pointer;
-}
-
-.win98-button:active {
-  border-color: var(--win98-dark) var(--win98-light) var(--win98-light) var(--win98-dark);
-  box-shadow: inset 1px 1px 0 var(--win98-dark);
-}
-
 .desktop-icon {
   display: flex;
   flex-direction: column;
@@ -426,18 +450,4 @@ body {
     height: 30px;
     font-size: 10px;
   }
-
-  .win98-button {
-    min-height: 30px;
-    padding: 6px 12px;
-  }
-}
-
-.not-selectable {
-  -webkit-touch-callout: none;
-  -webkit-user-select: none;
-  -khtml-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
 }

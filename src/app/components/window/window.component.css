@@ -1,56 +1,129 @@
+.window-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 3; /* Higher than desktop icons but individual windows will have even higher z-index */
+  pointer-events: none; /* This is key - makes the container transparent to clicks */
+}
+
 .win98-window {
   position: absolute;
-  background: #c0c0c0;
-  border: 2px solid #808080;
-  border-top: 2px solid #ffffff;
-  border-left: 2px solid #ffffff;
-  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
-  display: flex;
-  flex-direction: column;
+  background-color: var(--win98-window-bg);
+  border: 2px solid;
+  border-color: var(--win98-light) var(--win98-dark) var(--win98-dark) var(--win98-light);
+  box-shadow: 2px 2px 0 var(--win98-shadow);
+  overflow: hidden;
   pointer-events: auto;
+  min-width: 200px;
+  min-height: 100px;
 }
 
 .win98-window.maximized {
-  width: 100% !important;
-  height: calc(100% - 28px) !important;
-  left: 0 !important;
-  top: 0 !important;
+  top: 8px !important;
+  left: 8px !important;
+  right: 8px !important;
+  bottom: 36px !important; /* 28px for taskbar + 8px for bottom spacing */
+  width: calc(100% - 16px) !important;
+  height: calc(100vh - 72px) !important; /* 28px for taskbar + 16px for top/bottom spacing + 28px for window title bar */
+  border-width: 2px !important;
+  box-shadow: 2px 2px 0 var(--win98-shadow) !important;
 }
 
+/* Title Bar */
 .win98-title-bar {
-  background: #000080;
-  color: white;
+  background-color: var(--win98-highlight);
+  color: var(--win98-light);
   padding: 2px 4px;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  font-weight: bold;
+  font-size: 12px;
+  height: 18px;
   cursor: move;
-  user-select: none;
 }
 
 .title-bar-text {
-  font-weight: bold;
+  margin-left: 2px;
+}
+
+.title-bar-controls {
+  display: flex;
 }
 
 .title-bar-controls button {
-  background: #c0c0c0;
-  border: 1px solid #808080;
-  border-top: 1px solid #ffffff;
-  border-left: 1px solid #ffffff;
-  padding: 2px 6px;
+  width: 16px;
+  height: 14px;
   margin-left: 2px;
-  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid;
+  border-color: var(--win98-light) var(--win98-dark) var(--win98-dark) var(--win98-light);
+  background-color: var(--win98-button-face);
+  color: var(--win98-text);
+  position: relative;
+  font-size: 9px;
 }
 
-.title-bar-controls button:hover {
-  background: #d0d0d0;
+.title-bar-controls button:active {
+  border-color: var(--win98-dark) var(--win98-light) var(--win98-light) var(--win98-dark);
 }
 
+/* Window Content */
 .win98-window-content {
-  flex: 1;
-  padding: 8px;
+  padding: 4px;
+  cursor: default;
+  height: calc(100% - 26px);
   overflow: auto;
-  background: #c0c0c0;
+}
+
+/* Resize Handles */
+.resize-handle {
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  background-color: transparent;
+  z-index: 1;
+}
+
+.resize-handle.bottom-left {
+  bottom: 0;
+  left: 0;
+  cursor: sw-resize;
+}
+
+.resize-handle.bottom-right {
+  bottom: 0;
+  right: 0;
+  cursor: se-resize;
+}
+
+/* Mobile Responsive Adjustments */
+@media (max-width: 768px) {
+  .title-bar-controls button {
+    min-width: 24px;
+    min-height: 24px;
+    margin-left: 4px;
+  }
+
+  .win98-title-bar {
+    height: 30px;
+    font-size: 10px;
+  }
+
+  .win98-window.maximized {
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 28px !important;
+    width: 100% !important;
+    height: calc(100vh - 28px) !important;
+    border-width: 2px 0 0 0 !important;
+    box-shadow: none !important;
+  }
 }
 
 .win98-window.active {

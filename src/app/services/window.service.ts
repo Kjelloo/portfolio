@@ -14,7 +14,7 @@ export class WindowService {
   constructor() {
     // Initialize default windows
     this.initializeWindows();
-    
+
     // Handle window resize
     window.addEventListener('resize', this.handleResize.bind(this));
     // Initial resize check
@@ -24,7 +24,7 @@ export class WindowService {
   private handleResize() {
     const viewportWidth = window.innerWidth;
     const isMobile = viewportWidth < 768;
-    
+
     if (this.isMobile !== isMobile) {
       this.isMobile = isMobile;
       this.updateAllWindowsForViewport();
@@ -42,7 +42,7 @@ export class WindowService {
           // Save current state before maximizing
           windowConfig.previousSize = { ...windowConfig.size };
           windowConfig.previousPosition = { ...windowConfig.position };
-          
+
           // Maximize window
           windowConfig.size = { width: '100%', height: 'calc(100vh - 28px)' };
           windowConfig.position = { x: 0, y: 0 };
@@ -61,15 +61,15 @@ export class WindowService {
   private calculateCenterPosition(size: { width: string; height: string }): { x: number; y: number } {
     const viewportWidth = window.innerWidth;
     const viewportHeight = window.innerHeight;
-    
+
     // Convert size to pixels
     const width = parseInt(size.width, 10);
     const height = parseInt(size.height, 10);
-    
+
     // Calculate center position
     const x = Math.max(0, (viewportWidth - width) / 2);
     const y = Math.max(0, (viewportHeight - height - 28) / 2); // 28px for taskbar
-    
+
     return { x, y };
   }
 
@@ -80,6 +80,7 @@ export class WindowService {
         title: 'About Me',
         isOpen: false,
         isMaximized: false,
+        isMinimized: false,
         position: { x: 0, y: 0 },
         size: { width: '600px', height: '500px' },
         zIndex: 5
@@ -89,6 +90,7 @@ export class WindowService {
         title: 'Resume',
         isOpen: false,
         isMaximized: false,
+        isMinimized: false,
         position: { x: 0, y: 0 },
         size: { width: '750px', height: '600px' },
         zIndex: 5
@@ -111,11 +113,12 @@ export class WindowService {
     const windowConfig = this.windows.get(windowId);
     if (windowConfig) {
       windowConfig.isOpen = true;
-      
+      windowConfig.isMinimized = false;
+
       // Calculate initial position and size based on viewport
       const viewportWidth = window.innerWidth;
       const isMobile = viewportWidth < 768;
-      
+
       if (isMobile) {
         windowConfig.size = { width: '100%', height: 'calc(100vh - 28px)' };
         windowConfig.position = { x: 0, y: 0 };
@@ -125,7 +128,7 @@ export class WindowService {
         windowConfig.position = this.calculateCenterPosition(windowConfig.size);
         windowConfig.isMaximized = false;
       }
-      
+
       this.setActiveWindow(windowId);
       this.updateWindowsSubject();
     }
@@ -135,6 +138,7 @@ export class WindowService {
     const windowConfig = this.windows.get(windowId);
     if (windowConfig) {
       windowConfig.isOpen = false;
+      windowConfig.isMinimized = false;
       if (this.activeWindowId.value === windowId) {
         this.setActiveWindow(null);
       }
@@ -143,7 +147,23 @@ export class WindowService {
   }
 
   minimizeWindow(windowId: string) {
-    this.setActiveWindow(null);
+    const windowConfig = this.windows.get(windowId);
+    if (windowConfig) {
+      windowConfig.isMinimized = true;
+      if (this.activeWindowId.value === windowId) {
+        this.setActiveWindow(null);
+      }
+      this.updateWindowsSubject();
+    }
+  }
+
+  restoreWindow(windowId: string) {
+    const windowConfig = this.windows.get(windowId);
+    if (windowConfig) {
+      windowConfig.isMinimized = false;
+      this.setActiveWindow(windowId);
+      this.updateWindowsSubject();
+    }
   }
 
   setActiveWindow(windowId: string | null) {

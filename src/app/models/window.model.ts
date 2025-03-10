@@ -27,11 +27,24 @@ export interface Window {
   title: string;
   isOpen: boolean;
   isMaximized: boolean;
-  position: { x: number; y: number };
-  size: { width: string; height: string };
-  previousSize?: { width: string; height: string };
-  previousPosition?: { x: number; y: number };
+  isMinimized: boolean;
+  position: {
+    x: number;
+    y: number;
+  };
+  size: {
+    width: string;
+    height: string;
+  };
   zIndex: number;
+  previousSize?: {
+    width: string;
+    height: string;
+  };
+  previousPosition?: {
+    x: number;
+    y: number;
+  };
 }
 
 export interface DesktopIcon {
