@@ -1,17 +1,17 @@
 <div *ngIf="window?.isOpen && !window?.isMinimized"
      #windowElement
      class="win98-window"
-     [class.maximized]="window?.isMaximized"
+     [class.maximized]="window.isMaximized"
      [class.active]="isActive"
      [ngStyle]="{
        'z-index': isActive ? 10 : 5,
-       'width': window?.size?.width || '600px',
-       'height': window?.size?.height || '400px',
-       'left': (window?.position?.x || 0) + 'px',
-       'top': (window?.position?.y || 0) + 'px'
+       'width': window.size.width || '600px',
+       'height': window.size.height || '400px',
+       'left': (window.position.x || 0) + 'px',
+       'top': (window.position.y || 0) + 'px'
      }">
   <div class="win98-title-bar" (mousedown)="startDragging($event)">
-    <div class="title-bar-text">{{ window?.title || 'Window' }}</div>
+    <div class="title-bar-text">{{ window.title || 'Window' }}</div>
     <div class="title-bar-controls">
       <button aria-label="Minimize" (click)="minimize()">_</button>
       <button aria-label="Maximize" (click)="toggleMaximize()">□</button>

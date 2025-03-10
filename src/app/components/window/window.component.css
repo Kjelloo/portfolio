@@ -35,7 +35,7 @@
 .win98-title-bar {
   background-color: var(--win98-highlight);
   color: var(--win98-light);
-  padding: 2px 4px;
+  padding: 2px 2px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -125,10 +125,4 @@
     border-width: 2px !important;
     box-shadow: 2px 2px 0 var(--win98-shadow) !important;
   }
-}
-
-.win98-window.active {
-  border: 2px solid #000080;
-  border-top: 2px solid #ffffff;
-  border-left: 2px solid #ffffff;
 }
