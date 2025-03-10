@@ -4,8 +4,8 @@
   left: 0;
   width: 100%;
   height: 100%;
-  z-index: 3; /* Higher than desktop icons but individual windows will have even higher z-index */
-  pointer-events: none; /* This is key - makes the container transparent to clicks */
+  z-index: 3;
+  pointer-events: none;
 }
 
 .win98-window {

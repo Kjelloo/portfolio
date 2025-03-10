@@ -1,4 +1,3 @@
-// app.component.ts
 import { Component, OnInit } from '@angular/core';
 import { WindowService } from './services/window.service';
 import { Window } from './models/window.model';

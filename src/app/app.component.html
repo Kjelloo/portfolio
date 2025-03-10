@@ -1,5 +1,4 @@
 <app-desktop>
-  <!-- Windows -->
   <ng-container *ngFor="let window of windows">
     <app-window *ngIf="window.id === 'about'" [window]="window">
       <app-about></app-about>
@@ -10,6 +9,5 @@
     </app-window>
   </ng-container>
 
-  <!-- Taskbar -->
   <app-taskbar></app-taskbar>
 </app-desktop>
