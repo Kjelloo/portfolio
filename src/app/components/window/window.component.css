@@ -115,14 +115,14 @@
   }
 
   .win98-window.maximized {
-    top: 0 !important;
-    left: 0 !important;
-    right: 0 !important;
-    bottom: 28px !important;
-    width: 100% !important;
-    height: calc(100vh - 28px) !important;
-    border-width: 2px 0 0 0 !important;
-    box-shadow: none !important;
+    top: 8px !important;
+    left: 8px !important;
+    right: 8px !important;
+    bottom: 36px !important;
+    width: calc(100% - 16px) !important;
+    height: calc(100vh - 72px) !important;
+    border-width: 2px !important;
+    box-shadow: 2px 2px 0 var(--win98-shadow) !important;
   }
 }
 
