@@ -156,87 +156,78 @@
   border-color: var(--win98-dark) var(--win98-light) var(--win98-light) var(--win98-dark);
 }
 
-.projects-toolbar {
-  padding: 4px;
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 16px;
+  padding: 8px;
+}
+
+.project-card {
+  display: block;
+  text-decoration: none;
   background-color: var(--win98-button-face);
-  border-bottom: 1px solid var(--win98-dark);
-  display: flex;
-  justify-content: flex-end;
+  border: 2px solid;
+  border-color: var(--win98-light) var(--win98-dark) var(--win98-dark) var(--win98-light);
+  padding: 16px;
+  transition: background-color 0.1s;
 }
 
-.view-options {
-  display: flex;
-  gap: 4px;
-}
-
-.view-options .toolbar-button {
-  padding: 4px;
-  width: 24px;
-  height: 24px;
-}
-
-.view-options .toolbar-button.active {
+.project-card:hover {
   background-color: var(--win98-button-highlight);
+}
+
+.project-card:active {
   border-color: var(--win98-dark) var(--win98-light) var(--win98-light) var(--win98-dark);
 }
 
-.projects-list {
-  background-color: white;
+.project-info {
+  min-width: 0; /* Prevents flex item from overflowing */
 }
 
-.project-header {
-  display: grid;
-  grid-template-columns: 2fr 1fr 100px;
-  gap: 8px;
-  padding: 4px 8px;
-  background-color: var(--win98-button-face);
-  border-bottom: 1px solid var(--win98-dark);
+.project-title {
+  margin: 0 0 8px 0;
+  font-size: 16px;
   font-weight: bold;
   color: var(--win98-text);
 }
 
-.project-item {
-  display: grid;
-  grid-template-columns: 2fr 1fr 100px;
-  gap: 8px;
-  padding: 8px;
-  text-decoration: none;
+.project-description {
+  margin: 0 0 12px 0;
+  font-size: 14px;
   color: var(--win98-text);
-  border-bottom: 1px solid var(--win98-button-highlight);
+  line-height: 1.4;
 }
 
-.project-item:hover {
+.project-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.tag {
+  font-size: 12px;
+  padding: 2px 6px;
   background-color: var(--win98-highlight);
   color: var(--win98-light);
+  border: 1px solid var(--win98-dark);
 }
 
-.project-item:last-child {
-  border-bottom: none;
-}
+/* Mobile optimizations */
+@media (max-width: 768px) {
+  .projects-grid {
+    grid-template-columns: 1fr; /* Single column on mobile */
+  }
 
-.project-name {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
+  .project-card {
+    padding: 12px;
+  }
 
-.project-name img {
-  width: 16px;
-  height: 16px;
-}
+  .project-title {
+    font-size: 15px;
+  }
 
-.project-tech {
-  font-size: 14px;
-}
-
-.project-date {
-  font-size: 14px;
-  text-align: right;
-}
-
-/* Update hover state to only change text color for the hovered item */
-.project-item:hover .project-name,
-.project-item:hover .project-tech,
-.project-item:hover .project-date {
-  color: var(--win98-light);
+  .project-description {
+    font-size: 13px;
+  }
 }
