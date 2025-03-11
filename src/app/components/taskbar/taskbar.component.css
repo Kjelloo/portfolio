@@ -23,6 +23,10 @@
   height: 34px;
 }
 
+.start-button:active {
+  border-color: var(--win98-dark) var(--win98-light) var(--win98-light) var(--win98-dark);
+}
+
 .start-button img {
   width: 20px;
   height: 20px;

@@ -27,12 +27,6 @@ export class DesktopService {
       action: () => window.location.href = "mailto:kjell.schoke@outlook.com"
     },
     {
-      id: 'github',
-      title: 'GitHub',
-      iconPath: 'assets/icons/github.png',
-      action: () => window.open('https://github.com/kjelloo', '_blank')
-    },
-    {
       'id': 'trash',
       'title': 'Recycle Bin',
       'iconPath': 'assets/icons/trash.png',

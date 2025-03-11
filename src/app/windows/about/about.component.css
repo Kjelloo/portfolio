@@ -94,7 +94,7 @@
 }
 
 .social-link:hover {
-  text-decoration: underline;
+  background-color: var(--win98-button-highlight);
 }
 
 .social-link:active {
@@ -228,6 +228,50 @@
   }
 
   .project-description {
+    font-size: 13px;
+  }
+}
+
+.email-container {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 8px;
+  padding: 4px;
+  background-color: white;
+  border: 1px solid;
+  border-color: var(--win98-button-shadow) var(--win98-darker) var(--win98-darker) var(--win98-button-shadow);
+  max-width: 100%;
+  width: fit-content;
+  box-sizing: border-box;
+}
+
+.email-icon {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+}
+
+.email-link {
+  color: var(--win98-text);
+  text-decoration: none;
+  font-size: 14px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.email-link:hover {
+  text-decoration: underline;
+  color: var(--win98-highlight);
+}
+
+@media (max-width: 768px) {
+  .email-container {
+    width: 100%;
+  }
+  
+  .email-link {
     font-size: 13px;
   }
 }

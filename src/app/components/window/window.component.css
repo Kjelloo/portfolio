@@ -73,6 +73,10 @@
   border-color: var(--win98-dark) var(--win98-light) var(--win98-light) var(--win98-dark);
 }
 
+.title-bar-controls button:hover {
+  background-color: var(--win98-button-highlight);
+}
+
 /* Window Content */
 .win98-window-content {
   padding: 4px;
