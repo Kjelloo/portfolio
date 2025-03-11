@@ -1,0 +1,38 @@
+<div *ngIf="window?.isOpen && !window?.isMinimized"
+     #windowElement
+     class="win98-window"
+     [class.maximized]="window.isMaximized"
+     [class.active]="isActive"
+     [ngStyle]="{
+       'z-index': isActive ? 10 : 5,
+       'width': window.size.width,
+       'height': window.size.height,
+       'left': (window.position.x || 0) + 'px',
+       'top': (window.position.y || 0) + 'px'
+     }">
+  <div class="win98-title-bar" (mousedown)="startDragging($event)">
+    <div class="title-bar-text">{{ window.title || 'Window' }}</div>
+    <div class="title-bar-controls">
+      <button aria-label="Minimize" (click)="minimize()">
+        <img src="assets/icons/minimize.png" alt="Minimize">
+      </button>
+      <button aria-label="Maximize" (click)="toggleMaximize()">
+        <img src="assets/icons/maximize.png" alt="Maximize">
+      </button>
+      <button aria-label="Close" (click)="close()">
+        <img src="assets/icons/close.png" alt="Close">
+      </button>
+    </div>
+  </div>
+  <div class="win98-window-content" (click)="this.windowService.setActiveWindow(this.window.id)">
+    <ng-content></ng-content>
+  </div>
+  <div class="resize-handle top" (mousedown)="startResizing($event, 'top'); $event.stopPropagation()"></div>
+  <div class="resize-handle right" (mousedown)="startResizing($event, 'right'); $event.stopPropagation()"></div>
+  <div class="resize-handle bottom" (mousedown)="startResizing($event, 'bottom'); $event.stopPropagation()"></div>
+  <div class="resize-handle left" (mousedown)="startResizing($event, 'left'); $event.stopPropagation()"></div>
+  <div class="resize-handle top-left" (mousedown)="startResizing($event, 'top-left'); $event.stopPropagation()"></div>
+  <div class="resize-handle top-right" (mousedown)="startResizing($event, 'top-right'); $event.stopPropagation()"></div>
+  <div class="resize-handle bottom-left" (mousedown)="startResizing($event, 'bottom-left'); $event.stopPropagation()"></div>
+  <div class="resize-handle bottom-right" (mousedown)="startResizing($event, 'bottom-right'); $event.stopPropagation()"></div>
+</div>

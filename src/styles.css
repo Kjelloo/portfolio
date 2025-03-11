@@ -1,14 +1,40 @@
-@import url('https://fonts.googleapis.com/css2?family=Doto:wght@100..900&family=Press+Start+2P&family=Silkscreen:wght@400;700&family=VT323&display=swap');
+/* Windows 98 Color Palette */
+:root {
+  --win98-bg: #008080;
+  --win98-window-bg: #c0c0c0;
+  --win98-light: #ffffff;
+  --win98-dark: #808080;
+  --win98-darker: #404040;
+  --win98-shadow: #2c2c2c;
+  --win98-highlight: #000080;
+  --win98-button-highlight: #d0d0d0;
+  --win98-text: #000000;
+  --win98-button-shadow: #808080;
+  --win98-button-face: #c0c0c0;
+  --win98-taskbar-bg: #c0c0c0;
+}
 
-@import "tailwindcss/tailwind.css";
-@import 'tailwindcss/base';
-@import 'tailwindcss/components';
-@import 'tailwindcss/utilities';
-
-body {
-  font-family: "Doto", sans-serif;
-  font-weight: 600;
+/* Global Styles */
+* {
   margin: 0;
   padding: 0;
-  background-color: #131313;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'MS Sans Serif', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  color: var(--win98-text);
+}
+
+/* Common utility classes */
+.not-selectable {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
