@@ -1,13 +1,15 @@
 /* Windows 98 Color Palette */
 :root {
-  --win98-bg: #008080; /* Teal background */
+  --win98-bg: #008080;
   --win98-window-bg: #c0c0c0;
   --win98-light: #ffffff;
   --win98-dark: #808080;
   --win98-darker: #404040;
-  --win98-shadow: #000000;
-  --win98-highlight: #000080; /* Navy blue */
+  --win98-shadow: #2c2c2c;
+  --win98-highlight: #000080;
+  --win98-button-highlight: #d0d0d0;
   --win98-text: #000000;
+  --win98-button-shadow: #808080;
   --win98-button-face: #c0c0c0;
   --win98-taskbar-bg: #c0c0c0;
 }
