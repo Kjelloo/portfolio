@@ -14,7 +14,7 @@ export class WindowComponent implements OnInit, OnDestroy {
   isActive = false;
   isDragging = false;
   isResizing = false;
-  resizeHandle: 'bottom-left' | 'bottom-right' | null = null;
+  resizeHandle: 'top' | 'right' | 'bottom' | 'left' | 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right' | null = null;
   startX = 0;
   startY = 0;
   startWidth = 0;
@@ -56,12 +56,8 @@ export class WindowComponent implements OnInit, OnDestroy {
     this.windowService.setActiveWindow(this.window.id);
   }
 
-  startResizing(event: MouseEvent, handle: 'bottom-left' | 'bottom-right') {
-    if (!this.window || !this.windowElement) return;
-    if (this.window.isMaximized) return;
-
-    event.preventDefault();
-    event.stopPropagation();
+  startResizing(event: MouseEvent, handle: typeof this.resizeHandle) {
+    if (!this.window || this.window.isMaximized) return;
 
     this.isResizing = true;
     this.resizeHandle = handle;
@@ -72,37 +68,7 @@ export class WindowComponent implements OnInit, OnDestroy {
     this.startLeft = this.window.position.x;
     this.startTop = this.window.position.y;
     this.windowService.setActiveWindow(this.window.id);
-  }
-
-  handleMouseMove(event: MouseEvent) {
-    if (!this.window) return;
-    if (this.isDragging) {
-      const newX = event.clientX - this.startX;
-      const newY = event.clientY - this.startY;
-      this.windowService.updateWindowPosition(this.window.id, { x: newX, y: newY });
-    } else if (this.isResizing && this.resizeHandle) {
-      const deltaX = event.clientX - this.startX;
-      const deltaY = event.clientY - this.startY;
-
-      if (this.resizeHandle === 'bottom-right') {
-        const newWidth = Math.max(200, this.startWidth + deltaX);
-        const newHeight = Math.max(100, this.startHeight + deltaY);
-        this.windowService.updateWindowSize(this.window.id, {
-          width: `${newWidth}px`,
-          height: `${newHeight}px`
-        });
-      } else if (this.resizeHandle === 'bottom-left') {
-        const newWidth = Math.max(200, this.startWidth - deltaX);
-        const newHeight = Math.max(100, this.startHeight + deltaY);
-        const newX = this.startLeft + deltaX;
-
-        this.windowService.updateWindowPosition(this.window.id, { x: newX, y: this.startTop });
-        this.windowService.updateWindowSize(this.window.id, {
-          width: `${newWidth}px`,
-          height: `${newHeight}px`
-        });
-      }
-    }
+    event.preventDefault();
   }
 
   handleMouseUp() {
@@ -124,5 +90,92 @@ export class WindowComponent implements OnInit, OnDestroy {
   close() {
     if (!this.window) return;
     this.windowService.closeWindow(this.window.id);
+  }
+
+  handleMouseMove(event: MouseEvent) {
+    if (!this.window) return;
+
+    if (this.isDragging && !this.window.isMaximized) {
+      const newX = event.clientX - this.startX;
+      const newY = event.clientY - this.startY;
+      this.window.position = { x: newX, y: newY };
+    }
+
+    if (this.isResizing && !this.window.isMaximized) {
+      const deltaX = event.clientX - this.startX;
+      const deltaY = event.clientY - this.startY;
+      const minWidth = 320;
+      const minHeight = 480;
+
+      let newWidth = this.startWidth;
+      let newHeight = this.startHeight;
+      let newX = this.startLeft;
+      let newY = this.startTop;
+
+      switch (this.resizeHandle) {
+        case 'right':
+          newWidth = Math.max(minWidth, this.startWidth + deltaX);
+          break;
+        case 'bottom':
+          newHeight = Math.max(minHeight, this.startHeight + deltaY);
+          break;
+        case 'left':
+          const possibleWidth = this.startWidth - deltaX;
+          if (possibleWidth >= minWidth) {
+            newWidth = possibleWidth;
+            newX = this.startLeft + deltaX;
+          }
+          break;
+        case 'top':
+          const possibleHeight = this.startHeight - deltaY;
+          if (possibleHeight >= minHeight) {
+            newHeight = possibleHeight;
+            newY = this.startTop + deltaY;
+          }
+          break;
+        case 'top-left':
+          const topLeftPossibleWidth = this.startWidth - deltaX;
+          const topLeftPossibleHeight = this.startHeight - deltaY;
+          if (topLeftPossibleWidth >= minWidth) {
+            newWidth = topLeftPossibleWidth;
+            newX = this.startLeft + deltaX;
+          }
+          if (topLeftPossibleHeight >= minHeight) {
+            newHeight = topLeftPossibleHeight;
+            newY = this.startTop + deltaY;
+          }
+          break;
+        case 'top-right':
+          const topRightPossibleHeight = this.startHeight - deltaY;
+          newWidth = Math.max(minWidth, this.startWidth + deltaX);
+          if (topRightPossibleHeight >= minHeight) {
+            newHeight = topRightPossibleHeight;
+            newY = this.startTop + deltaY;
+          }
+          break;
+        case 'bottom-left':
+          const bottomLeftPossibleWidth = this.startWidth - deltaX;
+          if (bottomLeftPossibleWidth >= minWidth) {
+            newWidth = bottomLeftPossibleWidth;
+            newX = this.startLeft + deltaX;
+          }
+          newHeight = Math.max(minHeight, this.startHeight + deltaY);
+          break;
+        case 'bottom-right':
+          newWidth = Math.max(minWidth, this.startWidth + deltaX);
+          newHeight = Math.max(minHeight, this.startHeight + deltaY);
+          break;
+      }
+
+      // Update size and position in a single operation
+      this.window.size = { 
+        width: `${Math.round(newWidth)}px`, 
+        height: `${Math.round(newHeight)}px` 
+      };
+      this.window.position = { x: newX, y: newY };
+
+      // Prevent text selection during resize
+      event.preventDefault();
+    }
   }
 }

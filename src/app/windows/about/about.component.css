@@ -58,8 +58,7 @@
 }
 
 .social-links,
-.about-section,
-.technologies-section {
+.about-section {
   background-color: white;
   border: 2px solid;
   border-color: var(--win98-dark) var(--win98-light) var(--win98-light) var(--win98-dark);
