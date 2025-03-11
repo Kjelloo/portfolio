@@ -255,7 +255,7 @@
 .email-link {
   color: var(--win98-text);
   text-decoration: none;
-  font-size: 14px;
+  font-size: 16px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -270,7 +270,7 @@
   .email-container {
     width: 100%;
   }
-  
+
   .email-link {
     font-size: 13px;
   }
