@@ -167,9 +167,15 @@
     right: 4px !important;
     bottom: 44px !important;
     width: calc(100% - 8px) !important;
-    height: calc(100vh - 48px) !important;
+    height: calc(100vh - 88px) !important;
     border-width: 2px !important;
     box-shadow: 2px 2px 0 var(--win98-shadow) !important;
+    margin-bottom: 40px !important;
+  }
+
+  .title-bar-controls button[aria-label="Minimize"],
+  .title-bar-controls button[aria-label="Maximize"] {
+    display: none;
   }
 }
 
@@ -197,7 +203,8 @@
     right: 2px !important;
     bottom: 42px !important;
     width: calc(100% - 4px) !important;
-    height: calc(100vh - 44px) !important;
+    height: calc(100vh - 84px) !important;
+    margin-bottom: 40px !important;
   }
 }
 
@@ -226,6 +233,7 @@
     right: 1px !important;
     bottom: 41px !important;
     width: calc(100% - 2px) !important;
-    height: calc(100vh - 42px) !important;
+    height: calc(100vh - 82px) !important;
+    margin-bottom: 40px !important;
   }
 }
