@@ -1,15 +1,42 @@
+.resume-container {
+  padding: 16px;
+  background-color: var(--win98-button-face);
+  font-family: 'MS Sans Serif', Arial, sans-serif;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  height: 100%;
+  overflow-y: auto;
+}
+
 .toolbar {
   border-bottom: 1px solid var(--win98-dark);
   padding: 4px;
   display: flex;
   gap: 4px;
+  background-color: var(--win98-button-face);
+}
+
+.win98-button {
+  padding: 4px 8px;
+  border: 1px solid;
+  border-color: var(--win98-light) var(--win98-dark) var(--win98-dark) var(--win98-light);
+  background-color: var(--win98-button-face);
+  color: var(--win98-text);
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.win98-button:active {
+  border-color: var(--win98-dark) var(--win98-light) var(--win98-light) var(--win98-dark);
+  padding: 5px 7px 3px 9px;
 }
 
 .resume-view {
-  padding: 20px;
+  flex: 1;
+  padding: 16px;
   background-color: white;
-  height: calc(100% - 38px);
-  overflow: auto;
+  overflow-y: auto;
 }
 
 .resume-header {
@@ -34,54 +61,229 @@
   margin: 0 0 5px 0;
 }
 
-.resume-section {
-  margin-bottom: 20px;
+.resume-section,
+.technologies-section {
+  background-color: white;
+  border: 2px solid;
+  border-color: var(--win98-dark) var(--win98-light) var(--win98-light) var(--win98-dark);
 }
 
-.resume-section h2 {
+.section-header {
+  background-color: var(--win98-highlight);
+  color: white;
+  padding: 4px 8px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.section-header h2 {
+  margin: 0;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.section-icon {
+  width: 16px;
+  height: 16px;
+}
+
+.tab-header {
+  background-color: var(--win98-highlight);
+  color: var(--win98-light);
+  padding: 8px 12px;
+  font-weight: bold;
   font-size: 16px;
-  margin-bottom: 10px;
 }
 
-.resume-pagination {
-  position: absolute;
-  bottom: 10px;
-  left: 0;
-  width: 100%;
-  display: flex;
-  justify-content: center;
+.tab-content {
+  padding: 12px;
 }
 
-.page-controls {
-  display: flex;
-  align-items: center;
-  gap: 5px;
+.tab-content + .tab-content {
+  padding-top: 0;
+}
+
+.experience-item, .education-item {
+  margin-bottom: 16px;
+  padding: 16px;
+  border: 1px solid var(--win98-dark);
   background-color: var(--win98-button-face);
-  padding: 2px 10px;
-  border-radius: 2px;
 }
 
-.page-number {
-  font-size: 12px;
+.experience-item:last-child, .education-item:last-child {
+  margin-bottom: 0;
 }
 
-.page-button {
-  width: 20px;
-  height: 20px;
+.experience-header, .education-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 8px;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.experience-header h3, .education-header h3 {
+  margin: 0;
+  font-size: 18px;
+  color: var(--win98-text);
+}
+
+.date {
+  font-size: 15px;
+  font-weight: bold;
+  color: var(--win98-text);
+  white-space: nowrap;
+}
+
+.company, .institution {
+  font-size: 16px;
+  color: var(--win98-text);
+  margin-bottom: 12px;
+  font-weight: 500;
+}
+
+.win98-list {
+  margin: 8px 0;
+  padding-left: 24px;
+  font-size: 15px;
+  color: var(--win98-text);
+  line-height: 1.5;
+}
+
+.win98-list li {
+  margin-bottom: 8px;
+}
+
+.win98-list li:last-child {
+  margin-bottom: 0;
+}
+
+.tech-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  gap: 16px;
+  padding: 8px;
+}
+
+.tech-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 16px;
+  background-color: var(--win98-button-face);
+  border: 2px solid;
+  border-color: var(--win98-light) var(--win98-dark) var(--win98-dark) var(--win98-light);
+  cursor: default;
+}
+
+.tech-item img {
+  width: 64px;
+  height: 64px;
+  object-fit: contain;
+}
+
+.tech-item span {
+  font-size: 15px;
+  color: var(--win98-text);
+  text-align: center;
+}
+
+.language-grid {
+  display: grid;
+  gap: 16px;
+}
+
+.language-item {
   display: flex;
   align-items: center;
-  justify-content: center;
+  gap: 16px;
+  padding: 12px;
+  background-color: var(--win98-button-face);
+  border: 2px solid;
+  border-color: var(--win98-light) var(--win98-dark) var(--win98-dark) var(--win98-light);
+}
+
+.language-name {
+  width: 100px;
+  font-size: 15px;
+  color: var(--win98-text);
+}
+
+.proficiency-bar {
+  flex: 1;
+  height: 20px;
   border: 1px solid var(--win98-dark);
   background-color: white;
-  font-size: 12px;
+  padding: 2px;
 }
 
-.page-button.active {
-  background-color: #ddd;
+.proficiency-level {
+  height: 100%;
+  background-color: var(--win98-highlight);
 }
 
-.search-btn, .zoom-btn {
-  font-size: 12px;
-  width: 25px;
-  height: 20px;
+.not-selectable {
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .resume-container {
+    padding: 12px;
+    gap: 12px;
+  }
+
+  .tab-header {
+    font-size: 15px;
+  }
+
+  .experience-header h3, .education-header h3 {
+    font-size: 16px;
+  }
+
+  .date {
+    font-size: 14px;
+  }
+
+  .company, .institution {
+    font-size: 15px;
+  }
+
+  .win98-list {
+    font-size: 14px;
+    padding-left: 20px;
+  }
+
+  .tech-grid {
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    gap: 12px;
+  }
+
+  .tech-item {
+    padding: 12px;
+  }
+
+  .tech-item img {
+    width: 48px;
+    height: 48px;
+  }
+
+  .tech-item span {
+    font-size: 13px;
+  }
+
+  .language-name {
+    width: 80px;
+    font-size: 13px;
+  }
+
+  .proficiency-bar {
+    height: 16px;
+  }
 }
