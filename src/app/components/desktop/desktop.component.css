@@ -77,3 +77,80 @@
   -moz-user-select: none;
   -ms-user-select: none;
 }
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .desktop-background {
+    height: calc(100vh - 36px);
+  }
+
+  .desktop-icons {
+    padding: 8px;
+    gap: 12px;
+  }
+
+  .desktop-icon {
+    width: 65px;
+  }
+
+  .desktop-icon img {
+    width: 36px;
+    height: 36px;
+    margin-bottom: 4px;
+  }
+
+  .desktop-icon span {
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 480px) {
+  .desktop-background {
+    height: calc(100vh - 34px);
+  }
+
+  .desktop-icons {
+    padding: 6px;
+    gap: 10px;
+  }
+
+  .desktop-icon {
+    width: 60px;
+  }
+
+  .desktop-icon img {
+    width: 32px;
+    height: 32px;
+    margin-bottom: 3px;
+  }
+
+  .desktop-icon span {
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 360px) {
+  .desktop-background {
+    height: calc(100vh - 32px);
+  }
+
+  .desktop-icons {
+    padding: 4px;
+    gap: 8px;
+  }
+
+  .desktop-icon {
+    width: 55px;
+    padding: 4px;
+  }
+
+  .desktop-icon img {
+    width: 28px;
+    height: 28px;
+    margin-bottom: 2px;
+  }
+
+  .desktop-icon span {
+    font-size: 11px;
+  }
+}

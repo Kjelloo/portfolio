@@ -241,6 +241,15 @@
 
   .tab-header {
     font-size: 15px;
+    padding: 6px 10px;
+  }
+
+  .tab-content {
+    padding: 10px;
+  }
+
+  .experience-item, .education-item {
+    padding: 12px;
   }
 
   .experience-header h3, .education-header h3 {
@@ -285,5 +294,121 @@
 
   .proficiency-bar {
     height: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .resume-container {
+    padding: 8px;
+    gap: 8px;
+  }
+
+  .tab-header {
+    font-size: 14px;
+    padding: 6px 8px;
+  }
+
+  .tab-content {
+    padding: 8px;
+  }
+
+  .experience-item, .education-item {
+    padding: 10px;
+    margin-bottom: 12px;
+  }
+
+  .experience-header, .education-header {
+    flex-direction: column;
+    gap: 4px;
+    align-items: flex-start;
+  }
+
+  .date {
+    font-size: 13px;
+  }
+
+  .company, .institution {
+    font-size: 14px;
+    margin-bottom: 8px;
+  }
+
+  .win98-list {
+    font-size: 13px;
+    padding-left: 16px;
+    margin: 6px 0;
+  }
+
+  .win98-list li {
+    margin-bottom: 6px;
+  }
+
+  .tech-grid {
+    grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+    gap: 8px;
+    padding: 6px;
+  }
+
+  .tech-item {
+    padding: 8px;
+  }
+
+  .tech-item img {
+    width: 40px;
+    height: 40px;
+  }
+
+  .tech-item span {
+    font-size: 12px;
+  }
+
+  .language-grid {
+    gap: 8px;
+  }
+
+  .language-item {
+    padding: 8px;
+    gap: 8px;
+  }
+
+  .language-name {
+    width: 70px;
+    font-size: 12px;
+  }
+
+  .proficiency-bar {
+    height: 14px;
+  }
+}
+
+@media (max-width: 360px) {
+  .resume-container {
+    padding: 6px;
+    gap: 6px;
+  }
+
+  .experience-header h3, .education-header h3 {
+    font-size: 15px;
+  }
+
+  .tech-grid {
+    grid-template-columns: repeat(auto-fill, minmax(70px, 1fr));
+    gap: 6px;
+  }
+
+  .tech-item {
+    padding: 6px;
+  }
+
+  .tech-item img {
+    width: 36px;
+    height: 36px;
+  }
+
+  .tech-item span {
+    font-size: 11px;
+  }
+
+  .language-name {
+    width: 60px;
   }
 }

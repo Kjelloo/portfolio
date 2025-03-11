@@ -16,8 +16,8 @@
   box-shadow: 2px 2px 0 var(--win98-shadow);
   overflow: hidden;
   pointer-events: auto;
-  min-height: 480px;
-  min-width: 400px;
+  min-height: 300px;
+  min-width: 300px;
 }
 
 .win98-window.maximized {
@@ -156,13 +156,70 @@
   }
 
   .win98-window.maximized {
-    top: 8px !important;
-    left: 8px !important;
-    right: 8px !important;
-    bottom: 36px !important;
-    width: calc(100% - 16px) !important;
-    height: calc(100vh - 72px) !important;
+    top: 4px !important;
+    left: 4px !important;
+    right: 4px !important;
+    bottom: 44px !important;
+    width: calc(100% - 8px) !important;
+    height: calc(100vh - 48px) !important;
     border-width: 2px !important;
     box-shadow: 2px 2px 0 var(--win98-shadow) !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .win98-window {
+    min-width: 250px;
+    min-height: 250px;
+  }
+
+  .win98-title-bar {
+    height: 28px;
+    font-size: 14px;
+    padding: 4px;
+  }
+
+  .title-bar-controls button {
+    min-width: 22px;
+    min-height: 22px;
+    margin-left: 3px;
+  }
+
+  .win98-window.maximized {
+    top: 2px !important;
+    left: 2px !important;
+    right: 2px !important;
+    bottom: 42px !important;
+    width: calc(100% - 4px) !important;
+    height: calc(100vh - 44px) !important;
+  }
+}
+
+@media (max-width: 360px) {
+  .win98-window {
+    min-width: 200px;
+    min-height: 200px;
+  }
+
+  .win98-title-bar {
+    height: 26px;
+    font-size: 13px;
+    padding: 3px;
+  }
+
+  .title-bar-controls button {
+    min-width: 20px;
+    min-height: 20px;
+    margin-left: 2px;
+    font-size: 10px;
+  }
+
+  .win98-window.maximized {
+    top: 1px !important;
+    left: 1px !important;
+    right: 1px !important;
+    bottom: 41px !important;
+    width: calc(100% - 2px) !important;
+    height: calc(100vh - 42px) !important;
   }
 }
