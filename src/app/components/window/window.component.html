@@ -5,8 +5,8 @@
      [class.active]="isActive"
      [ngStyle]="{
        'z-index': isActive ? 10 : 5,
-       'width': window.size.width || '600px',
-       'height': window.size.height || '400px',
+       'width': window.size.width,
+       'height': window.size.height,
        'left': (window.position.x || 0) + 'px',
        'top': (window.position.y || 0) + 'px'
      }">
@@ -21,6 +21,12 @@
   <div class="win98-window-content" (click)="this.windowService.setActiveWindow(this.window.id)">
     <ng-content></ng-content>
   </div>
+  <div class="resize-handle top" (mousedown)="startResizing($event, 'top'); $event.stopPropagation()"></div>
+  <div class="resize-handle right" (mousedown)="startResizing($event, 'right'); $event.stopPropagation()"></div>
+  <div class="resize-handle bottom" (mousedown)="startResizing($event, 'bottom'); $event.stopPropagation()"></div>
+  <div class="resize-handle left" (mousedown)="startResizing($event, 'left'); $event.stopPropagation()"></div>
+  <div class="resize-handle top-left" (mousedown)="startResizing($event, 'top-left'); $event.stopPropagation()"></div>
+  <div class="resize-handle top-right" (mousedown)="startResizing($event, 'top-right'); $event.stopPropagation()"></div>
   <div class="resize-handle bottom-left" (mousedown)="startResizing($event, 'bottom-left'); $event.stopPropagation()"></div>
   <div class="resize-handle bottom-right" (mousedown)="startResizing($event, 'bottom-right'); $event.stopPropagation()"></div>
 </div>

@@ -17,7 +17,7 @@
   overflow: hidden;
   pointer-events: auto;
   min-height: 480px;
-  min-width: 320px;
+  min-width: 400px;
 }
 
 .win98-window.maximized {
@@ -42,7 +42,6 @@
   font-weight: bold;
   font-size: 16px;
   height: 24px;
-  cursor: move;
   user-select: none;
 }
 
@@ -73,10 +72,6 @@
   border-color: var(--win98-dark) var(--win98-light) var(--win98-light) var(--win98-dark);
 }
 
-.title-bar-controls button:hover {
-  background-color: var(--win98-button-highlight);
-}
-
 /* Window Content */
 .win98-window-content {
   padding: 4px;
@@ -88,10 +83,51 @@
 /* Resize Handles */
 .resize-handle {
   position: absolute;
-  width: 16px;
-  height: 16px;
   background-color: transparent;
   z-index: 1;
+}
+
+/* Edge handles */
+.resize-handle.top,
+.resize-handle.bottom {
+  left: 8px;
+  width: calc(100% - 16px);
+  height: 8px;
+  cursor: ns-resize;
+}
+
+.resize-handle.left,
+.resize-handle.right {
+  top: 8px;
+  width: 8px;
+  height: calc(100% - 16px);
+  cursor: ew-resize;
+}
+
+.resize-handle.top { top: 0; }
+.resize-handle.right { right: 0; }
+.resize-handle.bottom { bottom: 0; }
+.resize-handle.left { left: 0; }
+
+/* Corner handles */
+.resize-handle.top-left,
+.resize-handle.top-right,
+.resize-handle.bottom-left,
+.resize-handle.bottom-right {
+  width: 8px;
+  height: 8px;
+}
+
+.resize-handle.top-left {
+  top: 0;
+  left: 0;
+  cursor: nw-resize;
+}
+
+.resize-handle.top-right {
+  top: 0;
+  right: 0;
+  cursor: ne-resize;
 }
 
 .resize-handle.bottom-left {
