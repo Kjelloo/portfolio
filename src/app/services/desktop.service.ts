@@ -17,7 +17,7 @@ export class DesktopService {
     {
       id: 'resume',
       title: 'Resume',
-      iconPath: 'assets/icons/file.png',
+      iconPath: 'assets/icons/resume.png',
       action: () => this.windowService.openWindow('resume')
     },
     {
