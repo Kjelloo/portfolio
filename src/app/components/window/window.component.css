@@ -65,11 +65,17 @@
   background-color: var(--win98-button-face);
   color: var(--win98-text);
   position: relative;
-  font-size: 12px;
+  padding: 0;
+}
+
+.title-bar-controls button img {
+  width: 16px;
+  height: 16px;
 }
 
 .title-bar-controls button:active {
   border-color: var(--win98-dark) var(--win98-light) var(--win98-light) var(--win98-dark);
+  padding: 1px 0 0 1px;
 }
 
 /* Window Content */
