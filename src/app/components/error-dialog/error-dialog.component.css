@@ -1,0 +1,256 @@
+.error-dialog {
+  position: fixed;
+  background-color: var(--win98-window-bg);
+  border: 2px solid;
+  border-color: var(--win98-light) var(--win98-dark) var(--win98-dark) var(--win98-light);
+  box-shadow: 2px 2px 0 var(--win98-shadow);
+  width: 280px;
+  height: 140px;
+  user-select: none;
+  z-index: 9999;
+  pointer-events: auto;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.error-title-bar {
+  background-color: var(--win98-highlight);
+  color: var(--win98-light);
+  padding: 3px 5px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: bold;
+  font-size: 13px;
+  height: 18px;
+  cursor: move;
+}
+
+.title-bar-text {
+  margin-left: 2px;
+}
+
+.title-bar-controls button {
+  width: 16px;
+  height: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid;
+  border-color: var(--win98-light) var(--win98-dark) var(--win98-dark) var(--win98-light);
+  background-color: var(--win98-button-face);
+  color: var(--win98-text);
+  position: relative;
+  padding: 0;
+  cursor: pointer;
+}
+
+.title-bar-controls button img {
+  width: 14px;
+  height: 14px;
+}
+
+.title-bar-controls button:active {
+  border-color: var(--win98-dark) var(--win98-light) var(--win98-light) var(--win98-dark);
+  padding: 1px 0 0 1px;
+}
+
+.error-content {
+  padding: 12px;
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  height: fit-content;
+  overflow: auto;
+}
+
+.error-icon {
+  flex-shrink: 0;
+}
+
+.error-icon img {
+  width: 28px;
+  height: 28px;
+}
+
+.error-message {
+  font-size: 12px;
+  line-height: 1.4;
+  color: var(--win98-text);
+  flex-grow: 1;
+}
+
+.error-buttons {
+  position: absolute;
+  bottom: 12px;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  gap: 6px;
+}
+
+.win98-button {
+  min-width: 70px;
+  padding: 3px 6px;
+  font-size: 12px;
+  border: 1px solid;
+  border-color: var(--win98-light) var(--win98-dark) var(--win98-dark) var(--win98-light);
+  background-color: var(--win98-button-face);
+  color: var(--win98-text);
+  cursor: pointer;
+}
+
+.win98-button:active {
+  border-color: var(--win98-dark) var(--win98-light) var(--win98-light) var(--win98-dark);
+  padding: 4px 4px 5px 5px;
+}
+
+/* Responsive adjustments - scaling up as viewport gets smaller */
+@media (max-width: 480px) {
+  .error-dialog {
+    width: 300px;
+    height: 150px;
+  }
+
+  .error-title-bar {
+    height: 22px;
+    font-size: 14px;
+    padding: 4px 6px;
+  }
+
+  .title-bar-controls button {
+    width: 18px;
+    height: 16px;
+  }
+
+  .title-bar-controls button img {
+    width: 16px;
+    height: 16px;
+  }
+
+  .error-content {
+    padding: 14px;
+    gap: 14px;
+  }
+
+  .error-icon img {
+    width: 32px;
+    height: 32px;
+  }
+
+  .error-message {
+    font-size: 13px;
+  }
+
+  .win98-button {
+    min-width: 75px;
+    padding: 4px 8px;
+    font-size: 13px;
+  }
+
+  .error-buttons {
+    bottom: 14px;
+    gap: 8px;
+  }
+}
+
+@media (max-width: 400px) {
+  .error-dialog {
+    width: 320px;
+    height: 160px;
+  }
+
+  .error-title-bar {
+    height: 24px;
+    font-size: 15px;
+    padding: 4px 8px;
+  }
+
+  .title-bar-controls button {
+    width: 20px;
+    height: 18px;
+  }
+
+  .title-bar-controls button img {
+    width: 18px;
+    height: 18px;
+  }
+
+  .error-content {
+    padding: 16px;
+    gap: 16px;
+  }
+
+  .error-icon img {
+    width: 36px;
+    height: 36px;
+  }
+
+  .error-message {
+    font-size: 14px;
+  }
+
+  .win98-button {
+    min-width: 80px;
+    padding: 4px 10px;
+    font-size: 14px;
+  }
+
+  .error-buttons {
+    bottom: 16px;
+    gap: 10px;
+  }
+}
+
+@media (max-width: 320px) {
+  .error-dialog {
+    width: 280px;
+    height: 170px;
+  }
+
+  .error-title-bar {
+    height: 26px;
+    font-size: 16px;
+    padding: 5px 10px;
+  }
+
+  .title-bar-controls button {
+    width: 22px;
+    height: 20px;
+  }
+
+  .title-bar-controls button img {
+    width: 20px;
+    height: 20px;
+  }
+
+  .error-content {
+    padding: 18px;
+    gap: 18px;
+  }
+
+  .error-icon img {
+    width: 40px;
+    height: 40px;
+  }
+
+  .error-message {
+    font-size: 15px;
+  }
+
+  .win98-button {
+    min-width: 85px;
+    padding: 5px 12px;
+    font-size: 15px;
+  }
+
+  .error-buttons {
+    bottom: 18px;
+    gap: 12px;
+  }
+}
