@@ -16,7 +16,7 @@
 }
 
 .desktop-icons {
-  padding: 16px 12px;
+  padding: 40px 35px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -87,7 +87,7 @@
   }
 
   .desktop-icons {
-    padding: 20px 16px;
+    padding: 30px 25px;
     gap: 16px;
   }
 
@@ -113,7 +113,7 @@
   }
 
   .desktop-icons {
-    padding: 24px 20px;
+    padding: 20px 15px;
     gap: 20px;
   }
 
@@ -139,7 +139,7 @@
   }
 
   .desktop-icons {
-    padding: 28px 24px;
+    padding: 15px 10px;
     gap: 24px;
   }
 
