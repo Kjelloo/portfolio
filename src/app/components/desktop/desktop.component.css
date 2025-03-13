@@ -11,16 +11,16 @@
   top: 0;
   left: 0;
   width: 100%;
-  height: calc(100vh - 40px);
+  height: calc(100vh - 32px);
   z-index: 1;
 }
 
 .desktop-icons {
-  padding: 10px;
+  padding: 40px 35px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 16px;
+  gap: 12px;
   z-index: 2;
   position: relative;
 }
@@ -29,25 +29,27 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 75px;
-  padding: 5px;
-  margin-bottom: 5px;
+  width: 64px;
+  padding: 4px;
+  margin-bottom: 4px;
   cursor: pointer;
   image-rendering: pixelated;
 }
 
 .desktop-icon img {
-  width: 40px;
-  height: 40px;
-  margin-bottom: 5px;
+  width: 32px;
+  height: 32px;
+  margin-bottom: 4px;
   image-rendering: pixelated;
 }
 
 .desktop-icon span {
   color: white;
   text-align: center;
-  font-size: 14px;
+  font-size: 12px;
   text-shadow: 1px 1px 1px black;
+  word-wrap: break-word;
+  max-width: 100%;
 }
 
 .desktop-icon:hover {
@@ -78,19 +80,20 @@
   -ms-user-select: none;
 }
 
-/* Responsive adjustments */
-@media (max-width: 768px) {
+/* Responsive adjustments - scaling up as viewport gets smaller */
+@media (max-width: 480px) {
   .desktop-background {
-    height: calc(100vh - 36px);
+    height: calc(100vh - 34px);
   }
 
   .desktop-icons {
-    padding: 8px;
-    gap: 12px;
+    padding: 30px 25px;
+    gap: 16px;
   }
 
   .desktop-icon {
-    width: 65px;
+    width: 70px;
+    padding: 4px;
   }
 
   .desktop-icon img {
@@ -104,53 +107,54 @@
   }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 400px) {
   .desktop-background {
-    height: calc(100vh - 34px);
+    height: calc(100vh - 38px);
   }
 
   .desktop-icons {
-    padding: 6px;
-    gap: 10px;
+    padding: 20px 15px;
+    gap: 20px;
   }
 
   .desktop-icon {
-    width: 60px;
+    width: 76px;
+    padding: 5px;
   }
 
   .desktop-icon img {
-    width: 32px;
-    height: 32px;
-    margin-bottom: 3px;
+    width: 40px;
+    height: 40px;
+    margin-bottom: 5px;
   }
 
   .desktop-icon span {
-    font-size: 12px;
+    font-size: 14px;
   }
 }
 
-@media (max-width: 360px) {
+@media (max-width: 320px) {
   .desktop-background {
-    height: calc(100vh - 32px);
+    height: calc(100vh - 42px);
   }
 
   .desktop-icons {
-    padding: 4px;
-    gap: 8px;
+    padding: 15px 10px;
+    gap: 24px;
   }
 
   .desktop-icon {
-    width: 55px;
-    padding: 4px;
+    width: 82px;
+    padding: 6px;
   }
 
   .desktop-icon img {
-    width: 28px;
-    height: 28px;
-    margin-bottom: 2px;
+    width: 44px;
+    height: 44px;
+    margin-bottom: 6px;
   }
 
   .desktop-icon span {
-    font-size: 11px;
+    font-size: 15px;
   }
 }

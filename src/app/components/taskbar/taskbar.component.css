@@ -3,7 +3,7 @@
   bottom: 0;
   left: 0;
   width: 100%;
-  height: 40px;
+  height: 32px;
   background-color: var(--win98-taskbar-bg);
   border-top: 2px solid var(--win98-light);
   display: flex;
@@ -20,7 +20,7 @@
   border-color: var(--win98-light) var(--win98-dark) var(--win98-dark) var(--win98-light);
   background-color: var(--win98-button-face);
   cursor: pointer;
-  height: 34px;
+  height: 26px;
 }
 
 .start-button:active {
@@ -28,36 +28,43 @@
 }
 
 .start-button img {
-  width: 20px;
-  height: 20px;
+  width: 16px;
+  height: 16px;
   margin-right: 4px;
-  image-rendering: pixelated;
 }
 
 .start-button span {
   font-weight: bold;
-  font-size: 16px;
+  font-size: 13px;
 }
 
 .taskbar-items {
   display: flex;
   margin-left: 4px;
   flex-grow: 1;
+  overflow-x: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.taskbar-items::-webkit-scrollbar {
+  display: none;
 }
 
 .taskbar-item {
   display: flex;
   align-items: center;
-  padding: 2px 8px;
+  padding: 2px 6px;
   margin: 2px;
   border: 2px solid;
   border-color: var(--win98-light) var(--win98-dark) var(--win98-dark) var(--win98-light);
   background-color: var(--win98-button-face);
-  width: 200px;
-  min-width: 100px;
-  max-width: 400px;
-  height: 34px;
+  width: 160px;
+  min-width: 80px;
+  max-width: 200px;
+  height: 26px;
   cursor: pointer;
+  flex-shrink: 0;
 }
 
 .taskbar-item.active {
@@ -66,25 +73,25 @@
 }
 
 .taskbar-item img {
-  width: 17px;
-  height: 17px;
-  margin-right: 5px;
-  image-rendering: pixelated;
+  width: 14px;
+  height: 14px;
+  margin-right: 4px;
 }
 
 .taskbar-item span {
-  font-size: 15px;
+  font-size: 12px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
 
 .taskbar-clock {
-  margin-right: 8px;
-  padding: 2px 8px;
+  margin-right: 6px;
+  padding: 2px 6px;
   border: 2px inset #fff;
   background-color: var(--win98-button-face);
-  font-size: 14px;
+  font-size: 12px;
+  flex-shrink: 0;
 }
 
 /* Start Menu */
@@ -106,15 +113,14 @@
   -ms-user-select: none;
 }
 
-/* Responsive adjustments */
-@media (max-width: 768px) {
+/* Responsive adjustments - scaling up as viewport gets smaller */
+@media (max-width: 481px) {
   .win98-taskbar {
-    height: 36px;
+    height: 34px;
   }
 
   .start-button {
-    height: 30px;
-    padding: 2px 3px;
+    height: 28px;
   }
 
   .start-button img {
@@ -127,116 +133,109 @@
   }
 
   .taskbar-item {
-    height: 30px;
-    width: 160px;
-    min-width: 80px;
-    max-width: 300px;
-    padding: 2px 6px;
+    height: 28px;
+    width: 180px;
+    min-width: 100px;
   }
 
   .taskbar-item img {
-    width: 15px;
-    height: 15px;
-  }
-
-  .taskbar-item span {
-    font-size: 13px;
-  }
-
-  .taskbar-clock {
-    font-size: 13px;
-    margin-right: 6px;
-    padding: 2px 6px;
-  }
-}
-
-@media (max-width: 480px) {
-  .win98-taskbar {
-    height: 34px;
-  }
-
-  .start-button {
-    height: 28px;
-    padding: 2px;
-  }
-
-  .start-button img {
     width: 16px;
     height: 16px;
-    margin-right: 2px;
   }
 
-  .start-button span {
+  .taskbar-item span {
     font-size: 13px;
   }
 
-  .taskbar-item {
-    height: 28px;
-    width: 120px;
-    min-width: 60px;
-    max-width: 200px;
-    padding: 2px 4px;
-  }
-
-  .taskbar-item img {
-    width: 14px;
-    height: 14px;
-    margin-right: 3px;
-  }
-
-  .taskbar-item span {
-    font-size: 12px;
-  }
-
   .taskbar-clock {
-    font-size: 12px;
-    margin-right: 4px;
-    padding: 2px 4px;
+    font-size: 13px;
   }
 }
 
-@media (max-width: 360px) {
+@media (max-width: 401px) {
   .win98-taskbar {
-    height: 32px;
+    height: 38px;
   }
 
   .start-button {
-    height: 26px;
-    padding: 1px;
+    height: 32px;
+    padding: 3px 6px;
   }
 
   .start-button img {
-    width: 14px;
-    height: 14px;
-    margin-right: 1px;
+    width: 20px;
+    height: 20px;
+    margin-right: 6px;
   }
 
   .start-button span {
-    font-size: 12px;
+    font-size: 15px;
   }
 
   .taskbar-item {
-    height: 26px;
-    width: 100px;
-    min-width: 50px;
-    max-width: 150px;
-    padding: 1px 3px;
-    margin: 1px;
+    height: 32px;
+    width: 200px;
+    min-width: 120px;
+    padding: 3px 8px;
   }
 
   .taskbar-item img {
-    width: 12px;
-    height: 12px;
-    margin-right: 2px;
+    width: 18px;
+    height: 18px;
+    margin-right: 6px;
   }
 
   .taskbar-item span {
-    font-size: 11px;
+    font-size: 14px;
   }
 
   .taskbar-clock {
-    font-size: 11px;
-    margin-right: 3px;
-    padding: 1px 3px;
+    font-size: 14px;
+    padding: 3px 8px;
+    margin-right: 8px;
+  }
+}
+
+@media (max-width: 321px) {
+  .win98-taskbar {
+    height: 42px;
+  }
+
+  .start-button {
+    height: 36px;
+    padding: 4px 8px;
+  }
+
+  .start-button img {
+    width: 22px;
+    height: 22px;
+    margin-right: 8px;
+  }
+
+  .start-button span {
+    font-size: 16px;
+  }
+
+  .taskbar-item {
+    height: 36px;
+    width: 220px;
+    min-width: 140px;
+    padding: 4px 10px;
+  }
+
+  .taskbar-item img {
+    width: 20px;
+    height: 20px;
+    margin-right: 8px;
+  }
+
+  .taskbar-item span {
+    font-size: 15px;
+  }
+
+  .taskbar-clock {
+    font-size: 15px;
+    padding: 4px 10px;
+    margin-right: 10px;
   }
 }

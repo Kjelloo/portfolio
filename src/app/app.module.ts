@@ -12,6 +12,7 @@ import { TaskbarComponent } from './components/taskbar/taskbar.component';
 import { WindowComponent } from './components/window/window.component';
 import { AboutComponent } from './windows/about/about.component';
 import { ResumeComponent } from './windows/resume/resume.component';
+import { ErrorDialogComponent } from './components/error-dialog/error-dialog.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { ResumeComponent } from './windows/resume/resume.component';
     WindowComponent,
     AboutComponent,
     ResumeComponent,
+    ErrorDialogComponent,
   ],
   imports: [
     BrowserModule,

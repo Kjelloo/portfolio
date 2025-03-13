@@ -9,5 +9,11 @@
     </app-window>
   </ng-container>
 
+  <app-error-dialog
+    *ngIf="errorDialog.isOpen"
+    [title]="errorDialog.title"
+    [errorMessage]="errorDialog.message">
+  </app-error-dialog>
+
   <app-taskbar></app-taskbar>
 </app-desktop>
