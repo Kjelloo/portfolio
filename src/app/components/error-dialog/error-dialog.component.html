@@ -1,0 +1,24 @@
+<div *ngIf="windowDialog.isOpen"
+     #errorDialog
+     class="error-dialog"
+     [ngStyle]="{'z-index': windowDialog.zIndex}">
+  <div class="error-title-bar" (mousedown)="startDragging($event)">
+    <div class="title-bar-text">{{ title }}</div>
+    <div class="title-bar-controls">
+      <button aria-label="Close" (click)="close()">
+        <img src="assets/icons/close.png" alt="Close">
+      </button>
+    </div>
+  </div>
+  <div class="error-content">
+    <div class="error-icon">
+      <img src="assets/icons/error.png" alt="Error">
+    </div>
+    <div class="error-message">
+      {{ errorMessage }}
+    </div>
+  </div>
+  <div class="error-buttons">
+    <button class="win98-button" (click)="close()">OK</button>
+  </div>
+</div>

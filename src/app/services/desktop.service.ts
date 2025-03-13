@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { DesktopIcon } from '../models/window.model';
 import { WindowService } from './window.service';
+import { ErrorDialogService } from './error-dialog.service';
 
 @Injectable({
   providedIn: 'root'
@@ -30,19 +31,22 @@ export class DesktopService {
       'id': 'trash',
       'title': 'Recycle Bin',
       'iconPath': 'assets/icons/trash.png',
-      'action': () => undefined
+      'action': () => this.errorDialogService.showError('bin.exe', 'bin.exe could not be loaded...')
     },
     {
       'id': 'computer',
       'title': 'Computer',
       'iconPath': 'assets/icons/computer.png',
-      'action': () => undefined
+      'action': () => this.errorDialogService.showError('My Computer', 'Access to this resource has been denied.')
     }
   ];
 
   private desktopIconsSubject = new BehaviorSubject<DesktopIcon[]>(this.desktopIcons);
 
-  constructor(private windowService: WindowService) {}
+  constructor(
+    private windowService: WindowService,
+    private errorDialogService: ErrorDialogService
+  ) {}
 
   getDesktopIcons(): Observable<DesktopIcon[]> {
     return this.desktopIconsSubject.asObservable();

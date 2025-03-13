@@ -7,7 +7,7 @@ import { Window } from '../../models/window.model';
   templateUrl: './taskbar.component.html',
   styleUrls: ['./taskbar.component.css']
 })
-export class TaskbarComponent implements OnInit, OnDestroy {
+export class TaskbarComponent implements OnInit {
   openWindows: Window[] = [];
   activeWindowId: string | null = null;
   startMenuOpen = false;
@@ -28,10 +28,6 @@ export class TaskbarComponent implements OnInit, OnDestroy {
     setInterval(() => {
       this.currentTime = new Date();
     }, 500);
-  }
-
-  ngOnDestroy() {
-    // Clean up any subscriptions if needed
   }
 
   toggleStartMenu() {
