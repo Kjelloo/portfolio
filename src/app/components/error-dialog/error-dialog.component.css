@@ -27,7 +27,6 @@
   font-weight: bold;
   font-size: 13px;
   height: 18px;
-  cursor: move;
 }
 
 .title-bar-text {
@@ -46,7 +45,6 @@
   color: var(--win98-text);
   position: relative;
   padding: 0;
-  cursor: pointer;
 }
 
 .title-bar-controls button img {

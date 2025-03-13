@@ -31,7 +31,7 @@ export class DesktopService {
       'id': 'trash',
       'title': 'Recycle Bin',
       'iconPath': 'assets/icons/trash.png',
-      'action': () => this.errorDialogService.showError('Recycle Bin', 'The Recycle Bin is currently unavailable.')
+      'action': () => this.errorDialogService.showError('bin.exe', 'bin.exe could not be loaded...')
     },
     {
       'id': 'computer',
