@@ -15,6 +15,7 @@ resource "vercel_project_domain" "portfolio" {
 }
 
 resource "vercel_project_domain" "portfolio_dev" {
+  count       = var.environment == "dev" ? 1 : 0
   project_id  = vercel_project.portfolio.id
   git_branch  = "dev"
   domain      = var.vercel_domain
