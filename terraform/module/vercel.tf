@@ -1,6 +1,6 @@
 resource "vercel_project" "portfolio" {
   name = var.vercel_project_name
-  framework = "Angular"
+  framework = "angular"
   serverless_function_region = "fra1"
 
   git_repository = {
