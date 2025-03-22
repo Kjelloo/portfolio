@@ -10,7 +10,14 @@ resource "vercel_project" "portfolio" {
 }
 
 resource "vercel_project_domain" "portfolio" {
-  project_id = vercel_project.portfolio.id
-  git_branch = var.environment == "prod" ? "master" : "dev"
-  domain     = var.vercel_domain
+  count       = var.environment == "prod" ? 1 : 0
+  project_id  = vercel_project.portfolio.id
+  domain      = var.vercel_domain
+}
+
+resource "vercel_project_domain" "portfolio" {
+  count       = var.environment == "dev" ? 1 : 0
+  project_id  = vercel_project.portfolio.id
+  git_branch  = "dev"
+  domain      = var.vercel_domain
 }
