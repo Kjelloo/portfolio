@@ -1,5 +1,6 @@
 resource "vercel_project" "portfolio" {
-  name = var.vercel_project_name
+  count     = var.environment == "prod" ? 1 : 0
+  name      = var.vercel_project_name
   framework = "angular"
   serverless_function_region = "fra1"
 
