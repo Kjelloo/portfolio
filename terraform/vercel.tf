@@ -7,15 +7,27 @@ resource "vercel_project" "portfolio" {
     type = "github"
     repo = "kjelloo/portfolio"
   }
+
+  lifecycle {
+    prevent_destroy = true
+  }
 }
 
 resource "vercel_project_domain" "portfolio" {
   project_id  = vercel_project.portfolio.id
   domain      = "kjell.schoke.dk"
+
+  lifecycle {
+    prevent_destroy = true
+  }
 }
 
 resource "vercel_project_domain" "portfolio_dev" {
   project_id  = vercel_project.portfolio.id
   git_branch  = "dev"
   domain      = "dev.kjell.schoke.dk"
+
+  lifecycle {
+    prevent_destroy = true
+  }
 }
