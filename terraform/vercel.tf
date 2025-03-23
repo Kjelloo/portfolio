@@ -5,7 +5,7 @@ resource "vercel_project" "portfolio" {
 
   git_repository = {
     type = "github"
-    repo = "kjelloo/portfolio"
+    repo = "Kjelloo/portfolio"
   }
 
   lifecycle {
